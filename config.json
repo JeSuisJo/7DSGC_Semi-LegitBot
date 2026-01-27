@@ -1,0 +1,18 @@
+{
+  "demon_difficulties": {
+    "bellmoth": "hard",
+    "grey": "hell",
+    "howlex": "hell",
+    "indura": "easy",
+    "red": "hell",
+    "original_demon": "hard"
+  },
+  "device_id" : "emulator-5554",
+  "salon_design" : "1",
+  "daily_demon_stars": "2",
+  "daily_demon_ticket": "false",
+  "daily_use_ticket": "true",
+  "yggdrasil_level": "yellow",
+  "yggdrasil_memory": "5",
+  "only_reward_3v3": "true"
+}
