@@ -13,6 +13,7 @@ from utils.yggdrasil import run_yggdrasil
 from utils.expeditions import run_expeditions
 from utils.friendPoint import send_friends_points
 from utils.food import food_preparation
+from utils.DailyPvp import Daily_pvp
 
 def run_daily():
     # Configuration automatique de ADB
@@ -54,17 +55,19 @@ def run_daily():
 
     # ---------------- Faire le donjon special 4/8 ----------------
     run_special_dungeon()
-    time.sleep(1)
+    time.sleep(0.5)
 
     # ---------------- Faire Yggdrasil 5/8 ----------------
     run_yggdrasil()
-    time.sleep(1)
+    time.sleep(0.5)
 
     # ---------------- Faire les expeditions 6/8 ----------------
     run_expeditions()
-    time.sleep(1)
+    time.sleep(0.5)
 
     # ---------------- Faire le PVP 7/8 ----------------
+    Daily_pvp()
+    time.sleep(0.5)
 
     # --------------- Enovyer les points amis 8/8 ----------------
     send_friends_points()

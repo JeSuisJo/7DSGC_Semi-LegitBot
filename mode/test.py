@@ -2,7 +2,7 @@ from utils.adb_helper import auto_setup_adb
 import time
 import os
 from utils.DailyPvp import Daily_pvp
-from utils.test_thing import test
+from utils.recyclingEquipement import recycle_equipement
 
 def run_test():
     # Configuration automatique de ADB
@@ -12,7 +12,7 @@ def run_test():
     print(" Test mode")
     print("=" * 50)
 
-    Daily_pvp()
+    recycle_equipement()
     
     print("Test mode completed")
 

@@ -108,7 +108,8 @@ def equipement_farm():
 
             if is_match:
                 break
-
+            
+            adb.tap(127, 24)
             time.sleep(0.5)
 
         # ---------------- Clique sur le bouton menu combat ----------------
