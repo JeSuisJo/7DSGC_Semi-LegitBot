@@ -27,15 +27,15 @@ def run_yggdrasil():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-        if is_match:
+        if at_tavern:
             break
         time.sleep(0.5)
-        
+
     # ---------------- Clique sur le bouton menu combat ----------------
     print("Menu")
     adb.tap(738, 745)
@@ -43,12 +43,12 @@ def run_yggdrasil():
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_hub = adb.compare_region_with_image(
             reference_image_path=hub_image_path,
             region=region_hub,
             threshold=0.9,
         )
-        if is_match:
+        if in_hub:
             break
         time.sleep(0.5)
 
@@ -59,12 +59,12 @@ def run_yggdrasil():
 
     # ---------------- Savoir si on est dans le menu Yggdrasil ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_yggdrasil_menu = adb.compare_region_with_image(
             reference_image_path=yggdrasil_image_path,
             region=region_yggdrasil,
             threshold=0.9,
         )
-        if is_match:
+        if in_yggdrasil_menu:
             break
         time.sleep(0.5)
 
@@ -78,12 +78,12 @@ def run_yggdrasil():
 
     # ---------------- Savoir si on est dans le menu de la difficulté Yggdrasil ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_yggdrasil_difficulty = adb.compare_region_with_image(
             reference_image_path=yggdrasil_difficulty_image_path,
             region=region_yggdrasil_difficulty,
             threshold=0.9,
         )
-        if is_match:
+        if at_yggdrasil_difficulty:
             break
         time.sleep(0.5)
 
@@ -107,15 +107,15 @@ def run_yggdrasil():
 
     # ---------------- Savoir si on a fini le niveau ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-        if is_match:
+        if at_tavern:
             break
         time.sleep(0.5)
-        
+
     # ---------------- Retourner a la taverne ----------------
     print("Return to the tavern")
     adb.tap(148, 1011)

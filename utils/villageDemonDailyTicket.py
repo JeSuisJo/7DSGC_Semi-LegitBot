@@ -113,12 +113,12 @@ def village_demon_daily_ticket():
     time.sleep(2)
 
     # ---------------- Savoir si on a plus de potions  ----------------
-    is_match, similarity = adb.compare_region_with_image(
+    at_tavern = adb.compare_region_with_image(
         reference_image_path=home_image_path,
         region=region_home,
-        threshold=0.9
+        threshold=0.9,
     )
-    if is_match:
+    if at_tavern:
         raise StopScriptException("No more ACT and no more potions")
 
     # ---------------- Attendre la fin du clear ----------------

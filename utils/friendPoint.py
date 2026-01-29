@@ -16,15 +16,13 @@ def send_friends_points():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Aller dans le menu option ----------------
@@ -34,15 +32,13 @@ def send_friends_points():
 
     # ---------------- Savoir si on est dans le menu option ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_friends_options = adb.compare_region_with_image(
             reference_image_path=option_image_path,
             region=region_option,
             threshold=0.9,
         )
-
-        if is_match:
+        if in_friends_options:
             break
-
         time.sleep(0.5)
     
     # ---------------- Cliquer sur les amis ----------------
@@ -51,20 +47,12 @@ def send_friends_points():
     time.sleep(0.5)
 
     # ---------------- Que l'ont peux plus envoyé les points ----------------
-    while True:
-        color_send = adb.get_color_at(
-                392, 916,
-                target_color=(114, 114, 114),
-                tolerance=10,
-            )
-        if color_send:
-            break
-            
+    while not adb.get_color_at(392, 916, target_color=(114, 114, 114), tolerance=10):
         adb.tap(253, 921)
         time.sleep(0.5)
-    
+
     adb.tap(253, 921)
-    print("Friends point send")
+    print("Friend points sent")
 
     # ---------------- Retour a la taverne ----------------
     time.sleep(0.5)

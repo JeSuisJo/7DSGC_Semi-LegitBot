@@ -14,6 +14,25 @@ Automation bot for **The Seven Deadly Sins: Grand Cross** (7DSGC).
 
 ---
 
+## Installation
+
+1. **Install dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Get your emulator device ID:**  
+   Start your emulator, then run:
+
+   ```bash
+   python check_id.py
+   ```
+
+   This lists all connected devices (e.g. `emulator-5554`). Copy the ID of your emulator and set it in `config.json` under `"device_id"`.
+
+---
+
 ## Where to stand before starting a mode?
 
 **Your character must be at the tavern** before launching any mode.
@@ -48,4 +67,4 @@ Then select the mode (1, 2, or 3) from the menu.
 
 ## Configuration
 
-Settings (e.g. daily demons with/without tickets) are in `config.json`.
+Settings (e.g. daily demons with/without tickets, `device_id`) are in `config.json`.

@@ -18,15 +18,15 @@ def run_battle_preparation():
     
     # ---------------- Savoir si on est dans la preparation du combat ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_prep_screen = adb.compare_region_with_image(
             reference_image_path=prep_image_path,
             region=region_prep,
             threshold=0.9
         )
         
-        if is_match:
+        if in_prep_screen:
             break
-        
+
         time.sleep(0.5)
     
     # ---------------- Clique sur la configuration du mode automatique ----------------
@@ -92,13 +92,13 @@ def run_battle_preparation():
     time.sleep(1.7)
     
     # ---------------- Si plus d'act alors mettre des potions ----------------
-    is_match, similarity = adb.compare_region_with_image(
+    no_more_act = adb.compare_region_with_image(
         reference_image_path=potion_image_path,
         region=region_potion,
         threshold=0.9
     )
     
-    if is_match:
+    if no_more_act:
         print("No more ACT, refill potions")
         adb.tap(399, 805)
         time.sleep(0.7)
@@ -106,12 +106,12 @@ def run_battle_preparation():
         adb.tap(406, 1016)
         
     # ---------------- Si plus d'act et demande des diamants alors on stop le script ----------------   
-    is_match, similarity = adb.compare_region_with_image(
+    diamond_popup = adb.compare_region_with_image(
         reference_image_path=diamond_image_path,
         region=region_diamond,
         threshold=0.9
     )
     
-    if is_match:
+    if diamond_popup:
         raise StopScriptException("No more ACT and no more potions")
 

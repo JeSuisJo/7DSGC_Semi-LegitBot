@@ -61,20 +61,16 @@ def detect_demons_in_villages(adb=None):
                 demon_image_path = get_project_path(f"{village_folder}/{demon_name}.png")
                 
                 # Comparer la région avec l'image du démon (réutilise le screenshot)
-                is_match, similarity = adb.compare_region_with_image(
+                demon_matches, similarity = adb.compare_region_with_image_detailed(
                     reference_image_path=demon_image_path,
                     region=region,
                     threshold=0.9,
-                    screenshot_path=temp_screenshot  # Réutilise le screenshot existant
+                    screenshot_path=temp_screenshot
                 )
-                
-                # Garder le meilleur match
                 if similarity > best_similarity:
                     best_similarity = similarity
-                    if is_match:
+                    if demon_matches:
                         best_match = demon_name
-                        # OPTIONNEL: Arrêter dès qu'on trouve un match (plus rapide)
-                        # break
             
             # Si un match a été trouvé (au-dessus du seuil)
             if best_match and best_similarity >= 0.9:

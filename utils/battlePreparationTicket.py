@@ -16,15 +16,14 @@ def run_battle_preparation_ticket():
     
     # ---------------- Savoir si on est dans la preparation du combat ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_prep_screen = adb.compare_region_with_image(
             reference_image_path=prep_image_path,
             region=region_prep,
-            threshold=0.9
+            threshold=0.9,
         )
-        
-        if is_match:
+        if in_prep_screen:
             break
-        
+
         time.sleep(0.5)
 
     # ---------------- Clique sur l'achevement auto ----------------
@@ -61,24 +60,23 @@ def run_battle_preparation_ticket():
     adb.tap(411, 869)
     time.sleep(1)
 
-    # ---------------- Si plus d'act et demande des diamants alors on stop le script ----------------   
-    is_match, similarity = adb.compare_region_with_image(
+    # ---------------- Si plus d'act et demande des diamants alors on stop le script ----------------
+    diamond_popup = adb.compare_region_with_image(
         reference_image_path=diamond_image_path,
         region=region_diamond,
-        threshold=0.9
+        threshold=0.9,
     )
-    
-    if is_match:
+    if diamond_popup:
         raise StopScriptException("No more ACT and no more potions")
         
     # ---------------- TANT QUE LES RULSTATS SONT PAS FINI ON CLIQUE----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        level_finished = adb.compare_region_with_image(
             reference_image_path=rulstats_image_path,
             region=region_rulstats,
             threshold=0.9
         )
-        if is_match:
+        if level_finished:
             print("Level finished")
             break
         adb.tap(397, 116)

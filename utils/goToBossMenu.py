@@ -14,15 +14,13 @@ def go_to_boss_menu():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Clique sur le bouton menu combat ----------------
@@ -32,16 +30,15 @@ def go_to_boss_menu():
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_hub = adb.compare_region_with_image(
             reference_image_path=hub_image_path,
             region=region_hub,
             threshold=0.9,
         )
-
-        if is_match:
+        if in_hub:
             break
         time.sleep(0.5)
-    
+
     # ---------------- Cliquer sur le menu boss ----------------
     print("Boss menu")
     adb.tap(227, 494)
@@ -49,11 +46,11 @@ def go_to_boss_menu():
 
     # ---------------- Savoir si on est dans le menu boss ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_boss_menu = adb.compare_region_with_image(
             reference_image_path=boss_image_path,
             region=region_boss,
             threshold=0.9,
         )
-        if is_match:
+        if in_boss_menu:
             break
         time.sleep(0.5)

@@ -96,19 +96,17 @@ def equipement_farm():
     for i in range(1, loop_farm + 1):
         os.system('cls')
         print("=" * 50)
-        print(f"Equipement farm {i} of {loop_farm}")
+        print(f"Equipment farm {i} of {loop_farm}")
         print("=" * 50)
         # ---------------- Savoir si on est dans la taverne ----------------
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            at_tavern = adb.compare_region_with_image(
                 reference_image_path=home_image_path,
                 region=region_home,
                 threshold=0.9,
             )
-
-            if is_match:
+            if at_tavern:
                 break
-            
             adb.tap(127, 24)
             time.sleep(0.5)
 
@@ -119,13 +117,12 @@ def equipement_farm():
 
         # ---------------- Savoir si on est dans le menu ----------------
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            in_hub = adb.compare_region_with_image(
                 reference_image_path=hub_image_path,
                 region=region_hub,
                 threshold=0.9,
             )
-
-            if is_match:
+            if in_hub:
                 break
             time.sleep(0.5)
 
@@ -140,13 +137,12 @@ def equipement_farm():
 
         # ---------------- Savoir si on est dans le menu des equipements ----------------
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            in_equipment_menu = adb.compare_region_with_image(
                 reference_image_path=equipement_image_path,
                 region=region_equipement,
                 threshold=0.8,
             )
-
-            if is_match:
+            if in_equipment_menu:
                 break
             time.sleep(0.5)
 
@@ -201,13 +197,12 @@ def equipement_farm():
 
         # ---------------- Savoir si on est dans le choix de la difficulté de la mission ----------------
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            at_difficulty_menu = adb.compare_region_with_image(
                 reference_image_path=difficulty_image_path,
                 region=region_difficulty,
                 threshold=0.9,
             )
-
-            if is_match:
+            if at_difficulty_menu:
                 break
             time.sleep(0.5)
 
@@ -232,13 +227,12 @@ def equipement_farm():
 
         # ---------------- Savoir si on a fini le niveau ----------------
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            level_finished = adb.compare_region_with_image(
                 reference_image_path=difficulty_image_path,
                 region=region_difficulty,
                 threshold=0.9,
             )
-
-            if is_match:
+            if level_finished:
                 break
             adb.tap(127, 24)
             time.sleep(0.5)

@@ -28,15 +28,13 @@ def Daily_pvp():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Clique sur le bouton menu deroulant ----------------
@@ -44,84 +42,77 @@ def Daily_pvp():
     time.sleep(0.7)
 
     # ---------------- Clique sur le combat pvp no stuff ----------------
-    print("Going to pvp no equipement")
+    print("Going to PvP (no equipment)")
     adb.tap(51, 737)
     time.sleep(0.5)
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_pvp_menu = adb.compare_region_with_image(
             reference_image_path=pvp_image_path,
             region=region_pvp,
             threshold=0.9,
         )
-
-        if is_match:
-            print("Prepare to do all ticket")
+        if in_pvp_menu:
+            print("Preparing to use all tickets")
             break
         time.sleep(0.5)
 
     # ---------------- Loop de game jusqu'a avoir le diamand qui apparait ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        no_more_tickets = adb.compare_region_with_image(
             reference_image_path=diamond_image_path,
             region=region_diamond,
             threshold=0.9,
         )
-
-        if is_match:
-            print("No more ticket pvp")
+        if no_more_tickets:
+            print("No more PvP tickets")
             adb.tap(589, 336)
             time.sleep(0.8)
             adb.tap(504, 1008)
             break
-        
+
         adb.tap(741, 482)
 
         # ---------------- Si on trouve le menu on lance le fight
-        pvp_found, similarity = adb.compare_region_with_image(
+        pvp_menu_found = adb.compare_region_with_image(
             reference_image_path=pvp_image_path,
             region=region_pvp,
             threshold=0.9,
         )
-
-        if pvp_found:
+        if pvp_menu_found:
             time.sleep(0.5)
             adb.tap(405, 1014)
             time.sleep(1.5)
 
         # ---------------- Lancer le mode auto est attendre la fin et relancer le fight
-        pvp_auto, similarity = adb.compare_region_with_image(
-        reference_image_path=auto_fight_image_path,
-        region=region_auto_fight,
-        threshold=0.9,
+        auto_fight_visible = adb.compare_region_with_image(
+            reference_image_path=auto_fight_image_path,
+            region=region_auto_fight,
+            threshold=0.9,
         )
-
-        if pvp_auto:
+        if auto_fight_visible:
             time.sleep(0.5)
             adb.tap(712, 26)
             time.sleep(0.5)
             while True:
                 # Ok abandon
-                pvp_leave, similarity = adb.compare_region_with_image(
+                leave_confirm_visible = adb.compare_region_with_image(
                     reference_image_path=pvp_leave_image_path,
                     region=region_pvp_leave,
                     threshold=0.9,
                 )
-
-                if pvp_leave:
+                if leave_confirm_visible:
                     time.sleep(0.5)
                     adb.tap(399, 590)
 
-
                 # Fin de fight
-                pvp_finish, similarity = adb.compare_region_with_image(
+                pvp_fight_finished = adb.compare_region_with_image(
                     reference_image_path=pvp_finish_image_path,
                     region=region_pvp_finish,
-                    threshold=0.9
+                    threshold=0.9,
                 )
-
-                if pvp_finish:
+                if pvp_fight_finished:
                     time.sleep(0.5)
                     adb.tap(294, 1002)
                     time.sleep(0.7)
@@ -129,13 +120,12 @@ def Daily_pvp():
 
                 time.sleep(0.5)
 
-        pvp_rank_up_ok, similarity = adb.compare_region_with_image(
-        reference_image_path=pvp_rank_up_image_path,
-        region=region_pvp_rank_up,
-        threshold=0.9,
+        rank_up_ok_visible = adb.compare_region_with_image(
+            reference_image_path=pvp_rank_up_image_path,
+            region=region_pvp_rank_up,
+            threshold=0.9,
         )
-
-        if pvp_rank_up_ok:
+        if rank_up_ok_visible:
             adb.tap(399, 979)
             time.sleep(0.5)
 
@@ -143,14 +133,12 @@ def Daily_pvp():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             time.sleep(0.8)
             break
-
         time.sleep(0.5)

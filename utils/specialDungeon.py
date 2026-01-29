@@ -23,18 +23,17 @@ def run_special_dungeon():
     special_dungeon_image_path = get_project_path("img/special_dungeon.png")
     region_event = (473, 358, 560, 414)
     event_image_path = get_project_path("img/event.png")
+    no_event_image_path = get_project_path("img/no-event.png")
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Clique sur le bouton menu combat ----------------
@@ -44,13 +43,12 @@ def run_special_dungeon():
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_hub = adb.compare_region_with_image(
             reference_image_path=hub_image_path,
             region=region_hub,
             threshold=0.9,
         )
-
-        if is_match:
+        if in_hub:
             break
         time.sleep(0.5)
 
@@ -61,12 +59,12 @@ def run_special_dungeon():
 
     # ---------------- Savoir si on est dans le menu donjon special ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_special_dungeon = adb.compare_region_with_image(
             reference_image_path=special_dungeon_image_path,
             region=region_special_dungeon,
             threshold=0.9,
         )
-        if is_match:
+        if in_special_dungeon:
             break
         time.sleep(0.5)
 
@@ -75,19 +73,34 @@ def run_special_dungeon():
     adb.tap(390, 322)
     time.sleep(0.5)
 
-    # ---------------- Savoir si il y a un event en premier ----------------
+    
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        # ---------------- Savoir si il y a un event en premier ----------------
+        event_visible = adb.compare_region_with_image(
             reference_image_path=event_image_path,
             region=region_event,
             threshold=0.9,
         )
-        if is_match:
+        if event_visible:
             adb.tap(425, 541)
             time.sleep(0.7)
             adb.tap(390, 707)
             time.sleep(0.5)
             break
+
+        # ---------------- Savoir si il y a pas d'event ----------------
+        no_event_visible = adb.compare_region_with_image(
+            reference_image_path=no_event_image_path,
+            region=region_event,
+            threshold=0.9,
+        )
+        if no_event_visible:
+            adb.tap(463, 365)
+            time.sleep(0.7)
+            adb.tap(460, 517)
+            time.sleep(0.5)
+            break
+
         time.sleep(0.5)
 
     # ---------------- Faire la preparation du combat selon la configuration ----------------
@@ -98,13 +111,12 @@ def run_special_dungeon():
 
     # ---------------- Savoir si on a fini le niveau ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
         time.sleep(0.5)
 

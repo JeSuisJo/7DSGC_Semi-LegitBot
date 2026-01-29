@@ -16,15 +16,13 @@ def food_preparation():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Cliquer sur le menu deroulant ----------------
@@ -38,12 +36,12 @@ def food_preparation():
 
     # ---------------- Savoir si on est dans un menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_menu = adb.compare_region_with_image(
             reference_image_path=in_menu_image_path,
             region=region_in_menu,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if in_menu:
             break
         time.sleep(0.5)
 
@@ -77,7 +75,7 @@ def food_preparation():
             target_color=(108, 108, 108),
             tolerance=10
         ):
-            print("Food cook finish")
+            print("Food cook finished")
             time.sleep(0.5)
             break
 
@@ -87,7 +85,7 @@ def food_preparation():
             target_color=(231, 163,  20),
             tolerance=10
         ):
-            print("Food cook finish")
+            print("Food cook finished")
             time.sleep(0.5)
             break
 
@@ -101,14 +99,11 @@ def food_preparation():
 
     # ---------------- Savoir si on est dans un menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_menu = adb.compare_region_with_image(
             reference_image_path=in_menu_image_path,
             region=region_in_menu,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if in_menu:
             break
         time.sleep(0.5)
-
-    
-        

@@ -1,10 +1,6 @@
 import sys
 import os
-
-# Ajouter le répertoire racine au path pour les imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-# Import de l'exception personnalisée pour arrêt propre du script
 from utils.adb_helper import StopScriptException
 
 def print_menu():
@@ -14,9 +10,8 @@ def print_menu():
     print("="*50)
     print("1. Daily")
     print("2. Auto Demon Farm")
-    print("3. Equipement Farm")
-    print("4. Test")
-    print("0. Quitter")
+    print("3. Equipment Farm")
+    print("0. Quit")
     print("="*50)
 
 def run_mode(mode_number: int):
@@ -32,11 +27,7 @@ def run_mode(mode_number: int):
         elif mode_number == 3:
             from mode.equipement_farm import run_equipement_farm
             run_equipement_farm()
-            
-        elif mode_number == 4:
-            from mode.test import run_test
-            run_test()
-            
+        
         else:
             print("Invalid mode!")
             return False
@@ -63,29 +54,23 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n Seleted a mode (0-4): ").strip()
+            choice = input("\n Select a mode (0-3): ").strip()
             
             if choice == "0":
-                print("\n Bye!")
                 break
             
             mode_number = int(choice)
             
-            if 1 <= mode_number <= 4:
+            if 1 <= mode_number <= 3:
                 success = run_mode(mode_number)
-                
-                input("\nPress Enter to continue...")
             else:
-                print("Invalid choice! Please enter a number between 0 and 4")
+                print("Invalid choice! Please enter a number between 0 and 3")
                 
         except ValueError:
-            print(" Invalid choice! Please enter a number between 0 and 4")
+            print(" Invalid choice! Please enter a number between 0 and 3")
         except KeyboardInterrupt:
-            print("\n\n Interruption by user")
-            confirm = input("Do you want to quit? (o/n): ").strip().lower()
-            if confirm == 'o':
-                print("\n Bye!")
-                break
+            print("\n Interrupted by user")
+            break
 
 if __name__ == "__main__":
     main()

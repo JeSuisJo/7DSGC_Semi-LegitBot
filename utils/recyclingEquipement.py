@@ -16,17 +16,15 @@ def recycle_equipement():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
-    
+
     # ---------------- Cliquer sur le menu deroulant ----------------
     adb.tap(57, 894)
     time.sleep(0.8)
@@ -38,18 +36,18 @@ def recycle_equipement():
 
     # ---------------- Savoir si on est dans un menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_menu = adb.compare_region_with_image(
             reference_image_path=in_menu_image_path,
             region=region_in_menu,
             threshold=0.9
         )
-        if is_match:
+        if in_menu:
             break
         time.sleep(0.5)
-    
+
     # ---------------- Cliquer sur le menu de configuration de recyclage ----------------
     time.sleep(2)
-    print("Configuration recyling")
+    print("Configuration recycling")
     adb.tap(180, 1043)
 
     # ---------------- Check des rareté enregistrer ----------------
@@ -64,7 +62,7 @@ def recycle_equipement():
         print("Grade C activated")
         adb.tap(325, 210)
     else:
-        print("Grade C Already activated")
+        print("Grade C already activated")
     time.sleep(0.5)
 
     # ---------------- Check UC ----------------
@@ -77,7 +75,7 @@ def recycle_equipement():
         print("Grade UC activated")
         adb.tap(382, 207)
     else:
-        print("Grade UC Already activated")
+        print("Grade UC already activated")
     time.sleep(0.5)
 
     # ---------------- Check R ----------------
@@ -90,7 +88,7 @@ def recycle_equipement():
         print("Grade R activated")
         adb.tap(434, 212)
     else:
-        print("Grade R Already activated")
+        print("Grade R already activated")
     time.sleep(0.5)
 
     # ---------------- Check SR ----------------
@@ -103,7 +101,7 @@ def recycle_equipement():
         print("Grade SR activated")
         adb.tap(494, 214)
     else:
-        print("Grade SR Already activated")
+        print("Grade SR already activated")
 
     time.sleep(0.5)
 
@@ -114,9 +112,9 @@ def recycle_equipement():
         tolerance=10,
         )
     if color_ssr:
-        print("Grade SRR Already Desactivated")
+        print("Grade SSR already deactivated")
     else:
-        print("Grade SRR Desactivated")
+        print("Grade SSR deactivated")
         adb.tap(545, 214)
 
     time.sleep(0.5)
@@ -127,9 +125,9 @@ def recycle_equipement():
         tolerance=10
     )
     if color_updrage:
-        print("Updrage items already activated")
+        print("Upgrade items already activated")
     else:
-        print("Activated updgrade items")
+        print("Activated upgrade items")
         adb.tap(434, 547)
     
     time.sleep(0.5)
@@ -142,7 +140,7 @@ def recycle_equipement():
     if color_how_many:
         print("All items already activated")
     else:
-        print("Activated all items selection")
+        print("Activated select all items")
         adb.tap(596, 723)
 
     # ---------------- Enregistrer la config ----------------
@@ -152,12 +150,12 @@ def recycle_equipement():
 
     # ---------------- Savoir si on est dans un menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_menu = adb.compare_region_with_image(
             reference_image_path=in_menu_image_path,
             region=region_in_menu,
             threshold=0.9
         )
-        if is_match:
+        if in_menu:
             break
         time.sleep(0.5)
 
@@ -181,12 +179,12 @@ def recycle_equipement():
     # ---------------- Savoir si il y a le return ----------------
     time.sleep(2.5)
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_menu = adb.compare_region_with_image(
             reference_image_path=in_menu_image_path,
             region=region_in_menu,
             threshold=0.9
         )
-        if is_match:
+        if in_menu:
             print("All items are recycled")
             break
 
@@ -209,13 +207,11 @@ def recycle_equipement():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)

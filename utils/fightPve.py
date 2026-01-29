@@ -12,17 +12,17 @@ def fight_pve():
     
     # ---------------- ATTENDRE LA FIN DU COMBAT ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        level_end_visible = adb.compare_region_with_image(
             reference_image_path=end_image_path,
             region=region_end,
-            threshold=0.9
+            threshold=0.9,
         )
-        is_match_2, similarity_2 = adb.compare_region_with_image(
+        level_end_visible_2 = adb.compare_region_with_image(
             reference_image_path=end_image_path,
             region=region_end_2,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match or is_match_2:
+        if level_end_visible or level_end_visible_2:
             break
         
         time.sleep(0.5)

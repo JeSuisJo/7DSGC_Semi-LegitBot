@@ -14,5 +14,5 @@
   "daily_use_ticket": "true",
   "yggdrasil_level": "yellow",
   "yggdrasil_memory": "5",
-  "only_reward_3v3": "true"
+  "only_reward_3v3": "false"
 }

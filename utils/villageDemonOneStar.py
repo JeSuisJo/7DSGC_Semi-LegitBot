@@ -27,7 +27,7 @@ def village_demon_one_star():
         target_color=(60, 124, 170),
         tolerance=10
     ):
-        print("Desactivated achievement auto")
+        print("Deactivated achievement auto")
         adb.tap(647, 261)
         time.sleep(0.5)
 

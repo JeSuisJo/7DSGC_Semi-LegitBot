@@ -704,7 +704,7 @@ class ADBHelper:
             if screenshot_path == temp_screenshot and os.path.exists(temp_screenshot):
                 os.remove(temp_screenshot)
     
-    def compare_region_with_image(
+    def _compare_region_with_image_impl(
         self,
         reference_image_path: str,
         region: Tuple[int, int, int, int],
@@ -712,27 +712,12 @@ class ADBHelper:
         screenshot_path: Optional[str] = None,
         temp_screenshot: str = "temp_screenshot.png"
     ) -> Tuple[bool, float]:
-        """
-        Compare une région précise du screenshot avec une image de référence
-        
-        Args:
-            reference_image_path: Chemin de l'image de référence
-            region: Tuple (x, y, width, height) de la région
-            threshold: Seuil de similarité
-            screenshot_path: Chemin du screenshot (optionnel)
-            temp_screenshot: Nom du screenshot temporaire
-        
-        Returns:
-            Tuple (is_match: bool, similarity_score: float)
-        """
+        """Implémentation interne retournant (is_match, similarity)."""
         comparator = self.get_image_comparator()
-        
-        # Prendre un screenshot si nécessaire
         if screenshot_path is None:
             if not self.screenshot(temp_screenshot):
                 return False, 0.0
             screenshot_path = temp_screenshot
-        
         try:
             return comparator.compare_region(
                 screenshot_path,
@@ -741,20 +726,49 @@ class ADBHelper:
                 threshold
             )
         finally:
-            # Nettoyer le fichier temporaire si on l'a créé
-            # Attendre un peu pour s'assurer que les fichiers sont fermés
             import time
-            time.sleep(0.1)  # Petit délai pour libérer le fichier
+            time.sleep(0.1)
             if screenshot_path == temp_screenshot:
-                # Résoudre le chemin pour le nettoyage
                 resolved_temp_path = self._resolve_path(temp_screenshot)
                 if os.path.exists(resolved_temp_path):
                     try:
                         os.remove(resolved_temp_path)
                     except (PermissionError, OSError):
-                        # Si le fichier est encore verrouillé, on ignore l'erreur
-                        # Il sera nettoyé au prochain appel ou à la fin du script
                         pass
+
+    def compare_region_with_image(
+        self,
+        reference_image_path: str,
+        region: Tuple[int, int, int, int],
+        threshold: float = 0.95,
+        screenshot_path: Optional[str] = None,
+        temp_screenshot: str = "temp_screenshot.png"
+    ) -> bool:
+        """
+        Compare une région précise du screenshot avec une image de référence.
+
+        Returns:
+            True si la région correspond à l'image de référence, False sinon.
+        """
+        return self._compare_region_with_image_impl(
+            reference_image_path, region, threshold, screenshot_path, temp_screenshot
+        )[0]
+
+    def compare_region_with_image_detailed(
+        self,
+        reference_image_path: str,
+        region: Tuple[int, int, int, int],
+        threshold: float = 0.95,
+        screenshot_path: Optional[str] = None,
+        temp_screenshot: str = "temp_screenshot.png"
+    ) -> Tuple[bool, float]:
+        """
+        Même que compare_region_with_image mais retourne (is_match, similarity).
+        Utile quand on a besoin du score de similarité (ex. clearDemon).
+        """
+        return self._compare_region_with_image_impl(
+            reference_image_path, region, threshold, screenshot_path, temp_screenshot
+        )
     
     # ==================== Méthodes de détection de couleur ====================
     

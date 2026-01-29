@@ -1,5 +1,3 @@
-from ast import While
-from turtle import get_poly
 from utils.adb_helper import auto_setup_adb
 import time
 import os
@@ -33,15 +31,15 @@ def run_expeditions():
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-        if is_match:
+        if at_tavern:
             break
         time.sleep(0.5)
-        
+
     # ---------------- Clique sur le bouton menu combat ----------------
     print("Menu")
     adb.tap(738, 745)
@@ -49,12 +47,12 @@ def run_expeditions():
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_hub = adb.compare_region_with_image(
             reference_image_path=hub_image_path,
             region=region_hub,
             threshold=0.9,
         )
-        if is_match:
+        if in_hub:
             break
         time.sleep(0.5)
 
@@ -65,12 +63,12 @@ def run_expeditions():
 
     # ---------------- Savoir si on est dans le menu expeditions ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_expedition_menu = adb.compare_region_with_image(
             reference_image_path=expedition_in_image_path,
             region=expedition_in,
             threshold=0.9,
         )
-        if is_match:
+        if in_expedition_menu:
             break
         time.sleep(0.5)
 
@@ -82,12 +80,12 @@ def run_expeditions():
         adb.tap(614, 331)
         time.sleep(0.5)
         while True:
-            is_match, similarity = adb.compare_region_with_image(
+            reward_expedition_ready = adb.compare_region_with_image(
                 reference_image_path=reward_expedition_daily_image_path,
                 region=reward_expedition_daily,
                 threshold=0.9,
             )
-            if is_match:
+            if reward_expedition_ready:
                 time.sleep(1)
                 adb.tap(614, 331)
                 break
@@ -109,37 +107,34 @@ def run_expeditions():
         # ---------------- ATTENDRE QUE LE REWARD APPARAISSE ----------------
         while True:
             # ---------------- SI 2 REWARD SPECIAL MISSON ----------------
-            is_match_2, similarity = adb.compare_region_with_image(
-            reference_image_path=reward_claim_2_bonus_image_path,
-            region=reward_claim_2_bonus,
-            threshold=0.9,
+            reward_2_bonus = adb.compare_region_with_image(
+                reference_image_path=reward_claim_2_bonus_image_path,
+                region=reward_claim_2_bonus,
+                threshold=0.9,
             )
-
-            if is_match_2:
+            if reward_2_bonus:
                 time.sleep(1)
                 adb.tap(586, 915)
                 break
 
             # ---------------- SI 1 REWARD  SPECIAL MISSON ----------------
-            is_match_1, similarity = adb.compare_region_with_image(
-            reference_image_path=reward_claim_1_bonus_image_path,
-            region=reward_claim_1_bonus,
-            threshold=0.9,
+            reward_1_bonus = adb.compare_region_with_image(
+                reference_image_path=reward_claim_1_bonus_image_path,
+                region=reward_claim_1_bonus,
+                threshold=0.9,
             )
-
-            if is_match_1:
+            if reward_1_bonus:
                 time.sleep(1)
                 adb.tap(586, 915)
                 break
 
             # ---------------- SI REWARD BASIQUE ----------------
-            is_match, similarity = adb.compare_region_with_image(
-            reference_image_path=reward_claim_no_bonus_image_path,
-            region=reward_claim_no_bonus,
-            threshold=0.9,
+            reward_no_bonus = adb.compare_region_with_image(
+                reference_image_path=reward_claim_no_bonus_image_path,
+                region=reward_claim_no_bonus,
+                threshold=0.9,
             )
-
-            if is_match_2:
+            if reward_no_bonus:
                 time.sleep(1)
                 adb.tap(586, 915)
                 break
@@ -157,36 +152,30 @@ def run_expeditions():
         adb.tap(358, 912)
         time.sleep(0.5)
         # ---------------- Confirmer l'envoi de l'équipe ----------------
+        while not adb.get_color_at(469, 909, target_color=(43, 160, 103), tolerance=10):
+            time.sleep(0.5)
+        print("Team sent")
+        adb.tap(469, 909)
+        # ---------------- Attendre que le hawk apparaisse ----------------
         while True:
-            color_confirmed = adb.get_color_at(
-                469, 909,
-                target_color=(43, 160, 103),
-                tolerance=10,
+            hawk_visible = adb.compare_region_with_image(
+                reference_image_path=hawk_image_path,
+                region=hawk_region,
+                threshold=0.9,
             )
-            if color_confirmed:
-                print("Team sent")
+            if hawk_visible:
                 adb.tap(469, 909)
-                # ---------------- Attendre que le hawk apparaisse ----------------
-                while True:
-                    is_match, similarity = adb.compare_region_with_image(
-                        reference_image_path=hawk_image_path,
-                        region=hawk_region,
-                        threshold=0.9,
-                    )
-                    if is_match:
-                        adb.tap(469, 909)
-                        break
-                    time.sleep(0.5)
                 break
+            time.sleep(0.5)
 
     # ---------------- Savoir si tous fini ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-        if is_match:
+        if at_tavern:
             break
         time.sleep(0.5)
         

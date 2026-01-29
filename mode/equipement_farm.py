@@ -8,10 +8,10 @@ def run_equipement_farm():
     adb = auto_setup_adb(verbose=True)
     os.system('cls')
     print("=" * 50)
-    print("Equipement farm mode")
+    print("Equipment farm mode")
     print("=" * 50)
     
     equipement_farm()
 
     
-    print("Equipement farm mode completed")
+    print("Equipment farm mode completed")

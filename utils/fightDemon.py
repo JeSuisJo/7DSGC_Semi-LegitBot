@@ -55,16 +55,15 @@ def fight_demon(adb, demon_name):
     
     # ---------------- Savoir si on est dans le menu des démons ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_difficulty_menu = adb.compare_region_with_image(
             reference_image_path=difficulty_demon_image_path,
             region=region_difficulty_demon,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if at_difficulty_menu:
             break
         time.sleep(0.5)
 
-    
     # ---------------- Cliquer sur le bouton de difficulté selon le démon et la difficulté choisie dans le config.json ----------------
     button_coords = DIFFICULTY_BUTTONS.get(difficulty_name)
     if not button_coords:
@@ -99,21 +98,20 @@ def fight_demon(adb, demon_name):
 
     # ---------------- Savoir si on est dans le menu des démons ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_demon_menu = adb.compare_region_with_image(
             reference_image_path=menu_demon_image_path,
             region=region_menu_demon,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if in_demon_menu:
             break
         # ---------------- Savoir si on a plus d'act  ----------------
-        is_match, similarity = adb.compare_region_with_image(
-        reference_image_path=potion_image_path,
-        region=region_potion,
-        threshold=0.9
+        no_more_act = adb.compare_region_with_image(
+            reference_image_path=potion_image_path,
+            region=region_potion,
+            threshold=0.9,
         )
-    
-        if is_match:
+        if no_more_act:
             print("No more ACT, refill potions")
             adb.tap(405, 818)
             time.sleep(0.7)
@@ -139,12 +137,12 @@ def fight_demon(adb, demon_name):
                 time.sleep(0.5)
 
         # ---------------- Savoir si on a plus de potions ----------------
-        is_match, similarity = adb.compare_region_with_image(
+        diamond_popup = adb.compare_region_with_image(
             reference_image_path=diamond_image_path,
             region=region_diamond,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if diamond_popup:
             raise StopScriptException("No more ACT and no more potions")
         time.sleep(0.5)
 
@@ -180,12 +178,12 @@ def fight_demon(adb, demon_name):
 
     # ---------------- Savoir si on est dans le menu des démons ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        in_demon_menu = adb.compare_region_with_image(
             reference_image_path=menu_demon_image_path,
             region=region_menu_demon,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if in_demon_menu:
             break
         time.sleep(0.5)
 
@@ -198,12 +196,12 @@ def fight_demon(adb, demon_name):
 
     # ---------------- Attendre le bouton auto  ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        auto_fight_visible = adb.compare_region_with_image(
             reference_image_path=auto_fight_image_path,
             region=region_auto_fight,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if auto_fight_visible:
             print("Mode auto")
             adb.tap(712, 26)
             break
@@ -213,12 +211,12 @@ def fight_demon(adb, demon_name):
 
     # ---------------- Attendre la fin du combat ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        demon_fight_finished = adb.compare_region_with_image(
             reference_image_path=end_fight_demon_image_path,
             region=region_end_fight_demon,
-            threshold=0.9
+            threshold=0.9,
         )
-        if is_match:
+        if demon_fight_finished:
             print("Combat finished")
             adb.tap(402, 1008)
             break
@@ -231,15 +229,13 @@ def fight_demon(adb, demon_name):
 
     # ---------------- Savoir si on est dans la taverne ----------------
     while True:
-        is_match, similarity = adb.compare_region_with_image(
+        at_tavern = adb.compare_region_with_image(
             reference_image_path=home_image_path,
             region=region_home,
             threshold=0.9,
         )
-
-        if is_match:
+        if at_tavern:
             break
-
         time.sleep(0.5)
 
     # ---------------- Cliquer sur le menu combat  ----------------
