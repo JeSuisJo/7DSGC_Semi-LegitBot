@@ -151,7 +151,7 @@ def fight_demon(adb, demon_name):
     # ---------------- Cliquer sur l'invitation ia allier ----------------
     print("Add IA Friends")
     adb.tap(238, 754)
-    time.sleep(0.5)
+    time.sleep(2)
 
     # ---------------- Savoir si on est dans le menu des amis IA avec la couleur ----------------
     while True:

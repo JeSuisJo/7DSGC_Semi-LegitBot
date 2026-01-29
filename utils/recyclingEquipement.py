@@ -165,5 +165,57 @@ def recycle_equipement():
     time.sleep(0.7)
     print("Recycling all items")
     adb.tap(396, 1020)
+    time.sleep(1)
+
+    # ---------------- Savoir si il y a le ok des haut grade items recycler  ----------------
+    color_high_grade = adb.get_color_at(
+        562, 625,
+        target_color= (29, 148, 91),
+        tolerance=10
+    )
+    if color_high_grade:
+        print("High Grade Items for recycling accepted")
+        adb.tap(562, 625)
+        time.sleep(0.5)
+
+    # ---------------- Savoir si il y a le return ----------------
+    time.sleep(2.5)
+    while True:
+        is_match, similarity = adb.compare_region_with_image(
+            reference_image_path=in_menu_image_path,
+            region=region_in_menu,
+            threshold=0.9
+        )
+        if is_match:
+            print("All items are recycled")
+            break
+
+        color_multi_items_ok = adb.get_color_at(
+            472, 1011,
+            target_color= (62, 148, 79),
+            tolerance=10
+        )
+        if color_multi_items_ok:
+            adb.tap(472, 1011)
+            time.sleep(0.5)
+
+        adb.tap(662, 32)
+        time.sleep(0.5)
+
+    # ---------------- Retourner en arriere ----------------
+    time.sleep(1)
+    adb.tap(34, 32)
     time.sleep(0.5)
-    
+
+    # ---------------- Savoir si on est dans la taverne ----------------
+    while True:
+        is_match, similarity = adb.compare_region_with_image(
+            reference_image_path=home_image_path,
+            region=region_home,
+            threshold=0.9,
+        )
+
+        if is_match:
+            break
+
+        time.sleep(0.5)

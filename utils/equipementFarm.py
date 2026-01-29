@@ -240,6 +240,7 @@ def equipement_farm():
 
             if is_match:
                 break
+            adb.tap(127, 24)
             time.sleep(0.5)
 
         # ---------------- Retour a la taverne  ----------------

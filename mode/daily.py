@@ -2,7 +2,7 @@ from utils.adb_helper import auto_setup_adb
 import time
 import os
 from utils.collectBeer import collect_beer
-# from utils.recyclingEquipement import recycle_equipement
+from utils.recyclingEquipement import recycle_equipement
 from utils.fightDemon import load_config
 from utils.goToBossMenu import go_to_boss_menu
 from utils.villageDemonDaily import village_demon_daily
@@ -25,8 +25,8 @@ def run_daily():
     print("=" * 50)
 
     # ---------------- Recycler les equipements ----------------
-    # recycle_equipement()
-    # time.sleep(0.5)
+    recycle_equipement()
+    time.sleep(0.5)
 
     # ---------------- Collecter la bierre 1/8 ----------------
     collect_beer()

@@ -1,0 +1,23 @@
+# Bytecode Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Environnement virtuel
+venv/
+.venv/
+env/
+
+# Fichiers de config sensibles (à adapter si besoin)
+# .env
+
+# IDE / éditeurs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
