@@ -7,6 +7,11 @@ import os
 def Daily_3v3():
     # Configuration automatique de ADB
     adb = auto_setup_adb(verbose=False)
+    os.system('cls')
+    print("=" * 50)
+    print(" Daily mode : PVP 7/8")
+    print("=" * 50)
+
     config = load_config()
     region_home = (615, 1005, 662, 1041)
     home_image_path = get_project_path("img/home.png")
@@ -87,11 +92,11 @@ def Daily_3v3():
     time.sleep(0.5)
 
     # ---------------- Savoir si il y a le daily reward du 3v3 ----------------
-    time.sleep(1.5)
+    time.sleep(2.5)
     daily_reward_3v3_color = adb.get_color_at(
-        551, 189,
-        target_color= (40, 149, 97),
-        tolerance=10
+        550, 185,
+        target_color= (125, 250, 98),
+        tolerance=50
     )
 
     if daily_reward_3v3_color:

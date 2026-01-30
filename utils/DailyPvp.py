@@ -128,6 +128,17 @@ def Daily_pvp():
         if rank_up_ok_visible:
             adb.tap(399, 979)
             time.sleep(0.5)
+        
+        # ---------------- Si le joueur en face a abandonné instantanément ----------------
+        pvp_fight_finished = adb.compare_region_with_image(
+            reference_image_path=pvp_finish_image_path,
+            region=region_pvp_finish,
+            threshold=0.9,
+        )
+        if pvp_fight_finished:
+            time.sleep(0.5)
+            adb.tap(294, 1002)
+            time.sleep(0.7)
 
         time.sleep(0.5)
 

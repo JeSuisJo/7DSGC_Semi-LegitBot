@@ -56,4 +56,4 @@ def send_friends_points():
 
     # ---------------- Retour a la taverne ----------------
     time.sleep(0.5)
-    adb.tap(162, 1014)
+    adb.tap(265, 1005)
