@@ -125,7 +125,7 @@ def run_battle_preparation_equipement():
     if no_more_act:
         print("No more ACT, refill potions")
         adb.tap(399, 805)
-        time.sleep(0.7)
+        time.sleep(1)
         print("Restarting battle")
         adb.tap(406, 1016)
         

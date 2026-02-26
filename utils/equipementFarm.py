@@ -166,7 +166,7 @@ def equipement_farm():
             print("Recovery Rate")
             adb.tap(329, 807)
 
-        time.sleep(0.5)
+        time.sleep(1)
 
         # ---------------- Clique sur le de lancement de la mission selon la couleur trouvée ----------------
         while True:
@@ -175,7 +175,7 @@ def equipement_farm():
             if ADBHelper.color_matches(mission_color, (0, 124, 130), tolerance=10):
                 print("Start mission")
                 adb.tap(586, 485)
-                time.sleep(0.7)
+                time.sleep(1)
                 adb.tap(586, 485)
                 break
             elif ADBHelper.color_matches(mission_color, (216, 150, 16), tolerance=10):
@@ -185,11 +185,11 @@ def equipement_farm():
             elif ADBHelper.color_matches(mission_color, (33, 154, 98), tolerance=10):
                 print("Finish mission")
                 adb.tap(586, 485)
-                time.sleep(1.5)
+                time.sleep(2)
                 adb.tap(399, 132)
-                time.sleep(1)
+                time.sleep(1.5)
                 adb.tap(399, 719)
-                time.sleep(1)
+                time.sleep(1.5)
                 adb.tap(586, 485)
                 break
 

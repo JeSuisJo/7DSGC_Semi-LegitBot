@@ -19,6 +19,7 @@ def Daily_pvp():
     pvp_leave_image_path = get_project_path("img/ok_leave.png")
     region_diamond = (363, 583, 425, 619)
     diamond_image_path = get_project_path("img/diamond.png")
+    no_more_diamond_image_path = get_project_path("img/no-diam.png")
     region_auto_fight = (753, 20, 780, 45)
     auto_fight_image_path = get_project_path("img/auto-fight.png")
     region_pvp_rank_up = (377, 972, 423, 996)
@@ -60,8 +61,22 @@ def Daily_pvp():
 
     # ---------------- Loop de game jusqu'a avoir le diamand qui apparait ----------------
     while True:
+        # ---------------- Il reste des diamants
         no_more_tickets = adb.compare_region_with_image(
             reference_image_path=diamond_image_path,
+            region=region_diamond,
+            threshold=0.9,
+        )
+        if no_more_tickets:
+            print("No more PvP tickets")
+            adb.tap(589, 336)
+            time.sleep(0.8)
+            adb.tap(504, 1008)
+            break
+
+        # ---------------- Il reste plus de diamants
+        no_more_tickets = adb.compare_region_with_image(
+            reference_image_path=no_more_diamond_image_path,
             region=region_diamond,
             threshold=0.9,
         )

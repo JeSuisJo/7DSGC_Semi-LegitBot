@@ -92,7 +92,7 @@ def Daily_3v3():
     time.sleep(0.5)
 
     # ---------------- Savoir si il y a le daily reward du 3v3 ----------------
-    time.sleep(2.5)
+    time.sleep(3)
     daily_reward_3v3_color = adb.get_color_at(
         550, 185,
         target_color= (125, 250, 98),
@@ -104,10 +104,10 @@ def Daily_3v3():
         adb.tap(551, 189)
         time.sleep(1.5)
         adb.tap(551, 189)
-        time.sleep(0.5)
+        time.sleep(1.5)
     else:
         print("No reward for now")
-        time.sleep(0.5)
+        time.sleep(1.5)
     
     # ---------------- Savoir si l'utilisateur veut faire le 3v3 ou non ----------------
     if config.get("only_reward_3v3") == "true":
