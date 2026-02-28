@@ -89,7 +89,7 @@ def Daily_pvp():
 
         adb.tap(741, 482)
 
-        # ---------------- Si on trouve le menu on lance le fight
+        # ---------------- Si on trouve le menu du pvp on lance le fight
         pvp_menu_found = adb.compare_region_with_image(
             reference_image_path=pvp_image_path,
             region=region_pvp,
@@ -127,6 +127,9 @@ def Daily_pvp():
                     region=region_pvp_finish,
                     threshold=0.9,
                 )
+                # Tap pour cancel le popup de l'info daily pvp
+                adb.tap(758, 514)
+
                 if pvp_fight_finished:
                     time.sleep(0.5)
                     adb.tap(294, 1002)
