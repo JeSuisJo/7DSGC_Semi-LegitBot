@@ -11,7 +11,6 @@ env/
 
 # Fichiers de config sensibles (à adapter si besoin)
 # .env
-config.json
 
 # IDE / éditeurs
 .idea/
