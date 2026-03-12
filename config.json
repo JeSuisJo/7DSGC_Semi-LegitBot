@@ -1,11 +1,11 @@
 {
   "demon_difficulties": {
-    "bellmoth": "hard",
+    "bellmoth": "hell",
     "grey": "hell",
     "howlex": "hell",
-    "indura": "easy",
+    "indura": "hell",
     "red": "hell",
-    "original_demon": "hard"
+    "original_demon": "hell"
   },
   "device_id" : "emulator-5554",
   "salon_design" : "1",

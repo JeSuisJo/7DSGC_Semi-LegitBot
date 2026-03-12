@@ -11,6 +11,7 @@ def print_menu():
     print("1. Daily")
     print("2. Auto Demon Farm")
     print("3. Equipment Farm")
+    print("4. Legendary Boss")
     print("0. Quit")
     print("="*50)
 
@@ -27,6 +28,10 @@ def run_mode(mode_number: int):
         elif mode_number == 3:
             from mode.equipement_farm import run_equipement_farm
             run_equipement_farm()
+
+        elif mode_number == 4:
+            from mode.legendary_boss import run_legendary_boss
+            run_legendary_boss()
         
         else:
             print("Invalid mode!")
@@ -39,7 +44,6 @@ def run_mode(mode_number: int):
         print(" Check if the module exists and is correctly configured")
         return False
     except StopScriptException as e:
-        # Exception pour arrêter proprement le script sans fermer immédiatement le terminal
         print(f"\n {e.message}")
         print(" Script stopped by user or automation condition")
         return False
@@ -54,20 +58,20 @@ def main():
         print_menu()
         
         try:
-            choice = input("\n Select a mode (0-3): ").strip()
+            choice = input("\n Select a mode (0-4): ").strip()
             
             if choice == "0":
                 break
             
             mode_number = int(choice)
             
-            if 1 <= mode_number <= 3:
+            if 1 <= mode_number <= 4:
                 success = run_mode(mode_number)
             else:
-                print("Invalid choice! Please enter a number between 0 and 3")
+                print("Invalid choice! Please enter a number between 0 and 4")
                 
         except ValueError:
-            print(" Invalid choice! Please enter a number between 0 and 3")
+            print(" Invalid choice! Please enter a number between 0 and 4")
         except KeyboardInterrupt:
             print("\n Interrupted by user")
             break

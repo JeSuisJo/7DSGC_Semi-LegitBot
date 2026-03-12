@@ -35,7 +35,7 @@ Automation bot for **The Seven Deadly Sins: Grand Cross** (7DSGC).
 
 ## Where to stand before starting a mode?
 
-**Your must be at the tavern** before launching any mode.
+**You must be at the tavern** before launching any mode.
 
 Tavern style (season 1, 3, or 4KOA) does not matter, the bot works with any of them.
 
@@ -43,15 +43,24 @@ Tavern style (season 1, 3, or 4KOA) does not matter, the bot works with any of t
 
 Stand as shown in the image above, then start the chosen mode.
 
+### Special case for Legendary Boss (mode 4)
+
+For **Legendary Boss farming**, you must **already be in the team selection menu** of the Legendary Boss stage before starting the bot.
+
+![Required position: team selection](img/README2.png)
+
+Stand as shown in the image above (team selection screen), then launch **mode 4 – Legendary Boss**.
+
 ---
 
-## The 3 modes
+## The 4 modes
 
 | Mode | Description |
 |------|-------------|
 | **1. Daily** | Full daily routine: Taking Beer, Crafting Food, Daily Demons, Special Dungeon, Yggdrasil, Expeditions, Daily PvP and Send Friend Points. |
-| **2. Auto Demon Farm** | Farm 1★ demons in a loop (with or without tickets) |
+| **2. Auto Demon Farm** | Farm 1★ demons in a loop (with or without tickets). |
 | **3. Equipement Farm** | Automated equipment farming. |
+| **4. Legendary Boss** | Automatically farms the Legendary Boss a chosen number of times, handling stamina refill and relaunch. |
 
 ---
 
@@ -61,7 +70,7 @@ Stand as shown in the image above, then start the chosen mode.
 python main.py
 ```
 
-Then select the mode (1, 2, or 3) from the menu.
+Then select the mode (1, 2, 3, or 4) from the menu.
 
 ---
 
