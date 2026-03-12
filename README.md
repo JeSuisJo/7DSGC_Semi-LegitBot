@@ -60,7 +60,7 @@ Stand as shown in the image above (team selection screen), then launch **mode 4 
 | **1. Daily** | Full daily routine: Taking Beer, Crafting Food, Daily Demons, Special Dungeon, Yggdrasil, Expeditions, Daily PvP and Send Friend Points. |
 | **2. Auto Demon Farm** | Farm 1★ demons in a loop (with or without tickets). |
 | **3. Equipement Farm** | Automated equipment farming. |
-| **4. Legendary Boss** | Automatically farms the Legendary Boss a chosen number of times, handling stamina refill and relaunch. |
+| **4. Legendary Boss** | Automatically farms the Legendary Boss a chosen number of times. |
 
 ---
 
