@@ -42,10 +42,14 @@ def Daily_pvp():
     adb.tap(51, 891)
     time.sleep(0.7)
 
-    # ---------------- Clique sur le combat pvp no stuff ----------------
-    print("Going to PvP (no equipment)")
-    adb.tap(51, 737)
-    time.sleep(0.5)
+    if config.get("pvp_stuff") == "true":
+        print("Going to PvP (with equipment)")
+        adb.tap(51, 663)
+        time.sleep(0.5)
+    else:
+        print("Going to PvP (no equipment)")
+        adb.tap(51, 737)
+        time.sleep(0.5)
 
     # ---------------- Savoir si on est dans le menu ----------------
     while True:
