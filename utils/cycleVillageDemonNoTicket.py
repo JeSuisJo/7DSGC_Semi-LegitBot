@@ -1,24 +1,17 @@
 import time
+from . import tap, wait_for_image, wait_for_color
 from .battlePreparation import run_battle_preparation
 from .fightPve import fight_pve
 from .battlePreparationEquipementAuto import battle_preparation_equipement_auto
 
 
-def cycle_village_demon_no_ticket(adb, difficulty_image_path, region_difficulty, cancel_color):
+def cycle_village_demon_no_ticket(difficulty_image_path, region_difficulty, cancel_color):
     # ---------------- Savoir si on est dans le choix de la difficulté de la mission ----------------
-    while True:
-        at_difficulty_menu = adb.compare_region_with_image(
-            reference_image_path=difficulty_image_path,
-            region=region_difficulty,
-            threshold=0.9,
-        )
-        if at_difficulty_menu:
-            break
-        time.sleep(0.5)
+    wait_for_image(difficulty_image_path, region_difficulty, 0.9)
 
     # ---------------- Cliquer sur la dernière difficulté ----------------
     print("Last difficulty")
-    adb.tap(384, 737)
+    tap(384, 737)
     time.sleep(0.5)
 
     # ---------------- Faire la preparation ----------------
@@ -28,29 +21,20 @@ def cycle_village_demon_no_ticket(adb, difficulty_image_path, region_difficulty,
     fight_pve()
 
     # ---------------- Attendre l'apparition de la couleur du bouton annuler du demon apparu ----------------
-    while not adb.get_color_at(347, 940, target_color=cancel_color, tolerance=10):
-        time.sleep(0.5)
+    wait_for_color(347, 940, cancel_color, 10)
     time.sleep(0.8)
     print("Demon appeared")
-    adb.tap(347, 940)
+    tap(347, 940)
     time.sleep(1)
 
 
-def cycle_village_demon_no_ticket_auto(adb, difficulty_image_path, region_difficulty, cancel_color):
+def cycle_village_demon_no_ticket_auto(difficulty_image_path, region_difficulty, cancel_color):
     # ---------------- Savoir si on est dans le choix de la difficulté de la mission ----------------
-    while True:
-        at_difficulty_menu = adb.compare_region_with_image(
-            reference_image_path=difficulty_image_path,
-            region=region_difficulty,
-            threshold=0.9,
-        )
-        if at_difficulty_menu:
-            break
-        time.sleep(0.5)
+    wait_for_image(difficulty_image_path, region_difficulty, 0.9)
 
     # ---------------- Cliquer sur la dernière difficulté ----------------
     print("Last difficulty")
-    adb.tap(384, 737)
+    tap(384, 737)
     time.sleep(0.5)
 
     # ---------------- Faire la preparation ----------------
@@ -60,10 +44,8 @@ def cycle_village_demon_no_ticket_auto(adb, difficulty_image_path, region_diffic
     fight_pve()
 
     # ---------------- Attendre l'apparition de la couleur du bouton annuler du demon apparu ----------------
-    while not adb.get_color_at(347, 940, target_color=cancel_color, tolerance=10):
-        time.sleep(0.5)
+    wait_for_color(347, 940, cancel_color, 10)
     time.sleep(0.8)
     print("Demon appeared")
-    adb.tap(347, 940)
+    tap(347, 940)
     time.sleep(1)
-

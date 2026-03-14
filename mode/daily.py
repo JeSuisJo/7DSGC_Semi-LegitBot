@@ -1,4 +1,4 @@
-from utils.adb_helper import auto_setup_adb
+from utils import tap
 import time
 import os
 from utils.collectBeer import collect_beer
@@ -16,8 +16,6 @@ from utils.food import food_preparation
 from utils.DailyPvp import Daily_pvp
 
 def run_daily():
-    # Configuration automatique de ADB
-    adb = auto_setup_adb(verbose=True)
     config = load_config()
     os.system('cls')
     print("=" * 50)
@@ -50,7 +48,7 @@ def run_daily():
 
     # ---------------- Retourner a la taverne ----------------
     print("Return to the tavern")
-    adb.tap(148, 1011)
+    tap(148, 1011)
     time.sleep(0.5)
 
     # ---------------- Faire le donjon special 4/8 ----------------

@@ -15,5 +15,5 @@
   "yggdrasil_level": "yellow",
   "yggdrasil_memory": "5",
   "only_reward_3v3": "false",
-  "pvp_stuff": "false"
+  "pvp_stuff": "true"
 }

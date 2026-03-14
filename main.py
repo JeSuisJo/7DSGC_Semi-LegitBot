@@ -1,7 +1,6 @@
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from utils.adb_helper import StopScriptException
 
 def print_menu():
     os.system('cls')
@@ -43,11 +42,11 @@ def run_mode(mode_number: int):
         print(f" Error importing: {e}")
         print(" Check if the module exists and is correctly configured")
         return False
-    except StopScriptException as e:
-        print(f"\n {e.message}")
-        print(" Script stopped by user or automation condition")
-        return False
     except Exception as e:
+        if type(e).__name__ == "StopScriptException":
+            print(f"\n {e}")
+            print(" Script stopped by user or automation condition")
+            return False
         print(f" Error during execution: {e}")
         import traceback
         traceback.print_exc()

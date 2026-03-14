@@ -1,4 +1,4 @@
-from .adb_helper import auto_setup_adb, ADBHelper, get_project_path, StopScriptException, KeyCode
+from . import tap, path, stop, wait_for_image, swipe, is_color, compare_image
 from utils.battlePreparationEquipement import run_battle_preparation_equipement
 from utils.battlePreparationEquipementAuto import battle_preparation_equipement_auto
 from utils.fightPve import fight_pve
@@ -6,23 +6,20 @@ import time
 import os
 
 def equipement_farm():
-    # Configuration automatique de ADB
-    adb = auto_setup_adb(verbose=False)
-    
     region_home = (615, 1005, 662, 1041)
-    home_image_path = get_project_path("img/home.png")
+    home_image_path = path("img/home.png")
     region_hub = (562, 345, 617, 402)
-    hub_image_path = get_project_path("img/hub.png")
+    hub_image_path = path("img/hub.png")
     region_equipement = (175, 788, 228, 834)
-    equipement_image_path = get_project_path("img/equipement.png")
+    equipement_image_path = path("img/equipement.png")
     region_difficulty = (604, 357, 635, 390)
-    difficulty_image_path = get_project_path("img/difficulty.png")
+    difficulty_image_path = path("img/difficulty.png")
 
     # ---------------- Choix entre set ou équipement ----------------
     print("What do you want to farm?")
     print("1 : Equipment")
     print("2 : Set")
-    
+
     while True:
         try:
             farm_type_choice = input("Your choice (1-2): ").strip()
@@ -33,10 +30,9 @@ def equipement_farm():
                 print("Please enter 1 or 2")
         except ValueError:
             print("Please enter a valid number")
-    
+
     # ---------------- Choix du nombre selon le type ----------------
     if farm_type == 1:
-        # Farmer des équipements
         while True:
             try:
                 num_equipements = int(input("How many equipments do you want to farm? ").strip())
@@ -48,7 +44,6 @@ def equipement_farm():
             except ValueError:
                 print("Please enter a valid number")
     else:
-        # Farmer des sets
         while True:
             try:
                 num_sets = int(input("How many sets do you want to farm? ").strip())
@@ -69,7 +64,7 @@ def equipement_farm():
     print("4 : Crit Chance")
     print("5 : Crit Resistance")
     print("6 : Recovery Rate")
-    
+
     while True:
         try:
             choice = input("Your choice (1-6): ").strip()
@@ -80,7 +75,7 @@ def equipement_farm():
                 print("Please enter a number between 1 and 6")
         except ValueError:
             print("Please enter a valid number")
-    
+
     equipement_names = {
         1: "Attack",
         2: "Defence",
@@ -89,7 +84,7 @@ def equipement_farm():
         5: "Crit Resistance",
         6: "Recovery Rate"
     }
-    
+
     print(f"Selected equipment: {equipement_names[equipement_type]}\n")
 
     # ---------------- Boucle de farm ----------------
@@ -100,115 +95,83 @@ def equipement_farm():
         print("=" * 50)
         # ---------------- Savoir si on est dans la taverne ----------------
         while True:
-            at_tavern = adb.compare_region_with_image(
-                reference_image_path=home_image_path,
-                region=region_home,
-                threshold=0.9,
-            )
-            if at_tavern:
+            if compare_image(home_image_path, region_home, 0.9):
                 break
-            adb.tap(127, 24)
+            tap(127, 24)
             time.sleep(0.5)
 
         # ---------------- Clique sur le bouton menu combat ----------------
         print("Menu")
-        adb.tap(738, 745)
+        tap(738, 745)
         time.sleep(0.5)
 
         # ---------------- Savoir si on est dans le menu ----------------
-        while True:
-            in_hub = adb.compare_region_with_image(
-                reference_image_path=hub_image_path,
-                region=region_hub,
-                threshold=0.9,
-            )
-            if in_hub:
-                break
-            time.sleep(0.5)
+        wait_for_image(hub_image_path, region_hub, 0.9)
 
         # ---------------- Swipe vers le bas pour aller vers le menu des equipements  ----------------
-        adb.swipe(402, 839, 402, 576, 300)
+        swipe(402, 839, 402, 576, 300)
         time.sleep(0.8)
 
         # ---------------- Clique sur le bouton equipements ----------------
         print("Equipment")
-        adb.tap(250, 815)
+        tap(250, 815)
         time.sleep(0.5)
 
         # ---------------- Savoir si on est dans le menu des equipements ----------------
-        while True:
-            in_equipment_menu = adb.compare_region_with_image(
-                reference_image_path=equipement_image_path,
-                region=region_equipement,
-                threshold=0.8,
-            )
-            if in_equipment_menu:
-                break
-            time.sleep(0.5)
+        wait_for_image(equipement_image_path, region_equipement, 0.8)
 
         # ---------------- Clique sur l'equipement a farm selon le choix de l'utilisateur ----------------
         if equipement_type == 1:
             print("Attack")
-            adb.tap(200, 588)
+            tap(200, 588)
         elif equipement_type == 2:
             print("Defence")
-            adb.tap(335, 590)
+            tap(335, 590)
         elif equipement_type == 3:
             print("HP")
-            adb.tap(466, 585)
+            tap(466, 585)
         elif equipement_type == 4:
             print("Crit Chance")
-            adb.tap(601, 590)
+            tap(601, 590)
         elif equipement_type == 5:
             print("Crit Resistance")
-            adb.tap(203, 798)
+            tap(203, 798)
         elif equipement_type == 6:
             print("Recovery Rate")
-            adb.tap(329, 807)
+            tap(329, 807)
 
         time.sleep(1)
 
         # ---------------- Clique sur le de lancement de la mission selon la couleur trouvée ----------------
         while True:
-            mission_color = adb.get_color_at(639, 503)
-
-            if ADBHelper.color_matches(mission_color, (0, 124, 130), tolerance=10):
+            if is_color(639, 503, (0, 124, 130), 10):
                 print("Start mission")
-                adb.tap(586, 485)
+                tap(586, 485)
                 time.sleep(1)
-                adb.tap(586, 485)
+                tap(586, 485)
                 break
-            elif ADBHelper.color_matches(mission_color, (216, 150, 16), tolerance=10):
+            elif is_color(639, 503, (216, 150, 16), 10):
                 print("Go to quest")
-                adb.tap(586, 485)
+                tap(586, 485)
                 break
-            elif ADBHelper.color_matches(mission_color, (33, 154, 98), tolerance=10):
+            elif is_color(639, 503, (33, 154, 98), 10):
                 print("Finish mission")
-                adb.tap(586, 485)
+                tap(586, 485)
                 time.sleep(2)
-                adb.tap(399, 132)
+                tap(399, 132)
                 time.sleep(1.5)
-                adb.tap(399, 719)
+                tap(399, 719)
                 time.sleep(1.5)
-                adb.tap(586, 485)
+                tap(586, 485)
                 break
-
             time.sleep(0.5)
 
         # ---------------- Savoir si on est dans le choix de la difficulté de la mission ----------------
-        while True:
-            at_difficulty_menu = adb.compare_region_with_image(
-                reference_image_path=difficulty_image_path,
-                region=region_difficulty,
-                threshold=0.9,
-            )
-            if at_difficulty_menu:
-                break
-            time.sleep(0.5)
+        wait_for_image(difficulty_image_path, region_difficulty, 0.9)
 
         # ---------------- Cliquer sur la derniere difficulté ----------------
         print("Last difficulty")
-        adb.tap(408, 661)
+        tap(408, 661)
         time.sleep(0.5)
 
         # ---------------- Faire le battle preparation si la boucle est a 1  ----------------
@@ -227,21 +190,12 @@ def equipement_farm():
 
         # ---------------- Savoir si on a fini le niveau ----------------
         while True:
-            level_finished = adb.compare_region_with_image(
-                reference_image_path=difficulty_image_path,
-                region=region_difficulty,
-                threshold=0.9,
-            )
-            if level_finished:
+            if compare_image(difficulty_image_path, region_difficulty, 0.9):
                 break
-            adb.tap(127, 24)
+            tap(127, 24)
             time.sleep(0.5)
 
         # ---------------- Retour a la taverne  ----------------
         print("Return to the tavern")
-        adb.tap(148, 1011)
+        tap(148, 1011)
         time.sleep(0.5)
-
-
-
-    
