@@ -84,7 +84,17 @@ def Daily_3v3():
             if compare_image(in_menu_image_path, region_in_menu, 0.9):
                 print("All tickets used")
                 tap(34, 35)
-                time.sleep(0.8)
+                print("Check if the win reward is available")
+                time.sleep(1.5)
+                if is_color(532, 243, (83, 209, 93), 5):
+                    print("Win reward available")
+                    tap(532, 243)
+                    time.sleep(1.5)
+                    tap(532, 243)
+                    time.sleep(0.5)
+                else:
+                    print("No win reward available")
+        
                 tap(34, 35)
                 time.sleep(0.5)
                 break
