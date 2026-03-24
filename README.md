@@ -8,7 +8,7 @@ Automation bot for **The Seven Deadly Sins: Grand Cross** (7DSGC).
 
 - Python 3
 - ADB (Android Debug Bridge) included in `platform-tools/`
-- Emulator or Android device with the game installed, connected via USB debugging
+- Emulator (Only try with MuMuPlayer with the model Galaxy A54)
 
 **Emulator setup:** the game window must be **1080×800** resolution with **200 DPI**.
 
