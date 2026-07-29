@@ -1,0 +1,54 @@
+{
+  "home": {
+    "region": [615, 1005, 662, 1041],
+    "img": "img/home.png"
+  },
+  "hub": {
+    "region": [433, 384, 485, 430],
+    "img": "img/hub.png"
+  },
+  "in_menu": {
+    "region": [4, 9, 60, 62],
+    "img": "img/return.png"
+  },
+  "battle_prep": {
+    "region": [175, 997, 218, 1032],
+    "img": "img/prep.png"
+  },
+  "no_act": {
+    "region": [365, 333, 429, 411],
+    "img": "img/act.png"
+  },
+  "no_potions": {
+    "region": [363, 662, 425, 698],
+    "img": "img/diamond.png"
+  },
+  "auto_fight": {
+    "region": [753, 20, 780, 45],
+    "img": "img/auto-fight.png"
+  },
+  "auto_fight_toggle": {
+    "tap": [712, 26]
+  },
+  "menu_button": {
+    "tap": [738, 745]
+  },
+  "side_menu": {
+    "tap": [57, 894]
+  },
+  "refill_act": {
+    "tap": [399, 805]
+  },
+  "tavern_return": {
+    "tap": [148, 1011]
+  },
+  "unblock": {
+    "tap": [137, 28]
+  },
+  "menu_quest": {
+    "tap": [258, 1009]
+  },
+  "main_story": {
+    "tap": [147, 392]
+  }
+}

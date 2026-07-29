@@ -1,0 +1,20 @@
+{
+  "device_id": "",
+  "salon_design": "1",
+  "daily_demon_stars": "1",
+  "daily_demon_ticket": "false",
+  "daily_use_ticket": "false",
+  "yggdrasil_level": "yellow",
+  "yggdrasil_memory": "5",
+  "expedition_items": "atk",
+  "only_reward_3v3": "false",
+  "pvp_stuff": "false",
+  "demon_difficulties": {
+    "bellmoth": "easy",
+    "grey": "easy",
+    "howlex": "easy",
+    "indura": "easy",
+    "red": "easy",
+    "original_demon": "easy"
+  }
+}

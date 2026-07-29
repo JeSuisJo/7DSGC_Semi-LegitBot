@@ -1,0 +1,116 @@
+{
+  "pvp_3v3_screen": {
+    "region": [730, 139, 769, 171],
+    "img": "img/3v3.png"
+  },
+  "pvp_3v3_in_battle": {
+    "region": [251, 1008, 285, 1042],
+    "img": "img/in_3v3_pvp.png"
+  },
+  "pvp_hub": {
+    "region": [3, 294, 796, 1073],
+    "img": "img/pvp_hub.png"
+  },
+  "pvp_3v3_confirm_low": {
+    "tap": [477, 889],
+    "rgb": [36, 144, 89]
+  },
+  "pvp_3v3_confirm_high": {
+    "tap": [592, 874],
+    "rgb": [40, 149, 97]
+  },
+  "pvp_3v3_daily_reward": {
+    "tap": [551, 189],
+    "rgb_at": [550, 185],
+    "rgb": [125, 250, 98]
+  },
+  "pvp_3v3_win_reward": {
+    "tap": [532, 243],
+    "rgb": [83, 209, 93]
+  },
+  "pvp_3v3_fight": {
+    "tap": [586, 424]
+  },
+  "pvp_3v3_start": {
+    "tap": [402, 1029]
+  },
+  "pvp_3v3_back": {
+    "tap": [43, 32]
+  },
+  "pvp_3v3_exit": {
+    "tap": [34, 35]
+  },
+  "pvp_3v3_finish_ok": {
+    "tap": [399, 1008]
+  },
+
+  "pvp_screen": {
+    "region": [245, 995, 278, 1025],
+    "img": "img/pvp.png"
+  },
+  "pvp_screen_confirm": {
+    "tap": [471, 916],
+    "rgb": [37, 144, 89]
+  },
+  "pvp_side_menu": {
+    "tap": [51, 891]
+  },
+  "pvp_menu_with_gear": {
+    "tap": [51, 663]
+  },
+  "pvp_menu_no_gear": {
+    "tap": [51, 737]
+  },
+  "pvp_no_tickets": {
+    "region": [138, 201, 650, 962],
+    "img": "img/diamond.png"
+  },
+  "pvp_no_tickets_alt": {
+    "region": [138, 201, 650, 962],
+    "img": "img/no-diam.png"
+  },
+  "pvp_no_tickets_close": {
+    "tap": [589, 262]
+  },
+  "pvp_fight": {
+    "tap": [741, 482]
+  },
+  "placement_game": {
+    "tap": [557, 788],
+    "rgb": [217, 153, 22]
+  },
+  "placement_game_finish": {
+    "tap": [450, 794],
+    "rgb": [51, 173, 120]
+  },
+  "pvp_start": {
+    "tap": [405, 1014]
+  },
+  "pvp_leave": {
+    "region": [380, 580, 425, 607],
+    "img": "img/ok_leave.png"
+  },
+  "pvp_leave_ok": {
+    "tap": [399, 590]
+  },
+  "pvp_battle_tap": {
+    "tap": [758, 514]
+  },
+  "pvp_finish": {
+    "region": [637, 1001, 666, 1022],
+    "img": "img/pvp-finsh.png"
+  },
+  "pvp_finish_ok": {
+    "tap": [294, 1002]
+  },
+  "ok_end": {
+    "tap": [502, 1010]
+  },
+  "pvp_rank_up": {
+    "region": [377, 972, 423, 996],
+    "img": "img/ok-rank-pvp.png"
+  },
+  "pvp_rank_up_ok": {
+    "tap": [399, 979]
+  }
+}

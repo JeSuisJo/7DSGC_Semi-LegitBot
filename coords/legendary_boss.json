@@ -1,0 +1,33 @@
+{
+  "lb_auto": {
+    "region": [644, 17, 674, 47],
+    "img": "img/auto.png"
+  },
+  "lb_in_battle": {
+    "region": [753, 15, 783, 46],
+    "img": "img/in-battle.png"
+  },
+  "lb_finish": {
+    "region": [637, 1006, 666, 1026],
+    "img": "img/end.png"
+  },
+  "lb_loss": {
+    "region": [639, 993, 668, 1015],
+    "img": "img/loss.png"
+  },
+  "lb_start": {
+    "tap": [402, 1017]
+  },
+  "lb_screen_tap": {
+    "tap": [402, 1055]
+  },
+  "lb_auto_toggle": {
+    "tap": [659, 24]
+  },
+  "lb_restart": {
+    "tap": [288, 1002]
+  },
+  "lb_exit": {
+    "tap": [507, 1011]
+  }
+}

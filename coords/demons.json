@@ -1,0 +1,220 @@
+{
+  "boss_menu": {
+    "region": [121, 268, 163, 304],
+    "img": "img/boss.png"
+  },
+  "boss_menu_button": {
+    "tap": [227, 494]
+  },
+  "boss_menu_return": {
+    "tap": [156, 240]
+  },
+
+  "demon_menu": {
+    "region": [641, 1001, 677, 1030],
+    "img": "img/menu-demon.png"
+  },
+  "demon_difficulty_menu": {
+    "region": [603, 356, 635, 394],
+    "img": "img/difficulty-demon.png"
+  },
+  "demon_difficulty_easy": {
+    "tap": [405, 363]
+  },
+  "demon_difficulty_hard": {
+    "tap": [414, 509]
+  },
+  "demon_difficulty_extreme": {
+    "tap": [414, 658]
+  },
+  "demon_difficulty_hell": {
+    "tap": [405, 813]
+  },
+  "demon_start_many": {
+    "tap": [470, 959],
+    "rgb": [40, 154, 97]
+  },
+  "demon_start_few": {
+    "tap": [468, 851],
+    "rgb": [49, 161, 105]
+  },
+  "demon_refill_act": {
+    "tap": [405, 818]
+  },
+  "demon_invite_ai": {
+    "tap": [238, 754]
+  },
+  "demon_ai_friend_low": {
+    "tap": [677, 372],
+    "rgb": [189, 145, 0]
+  },
+  "demon_ai_friend_high": {
+    "tap": [677, 354],
+    "rgb": [190, 146, 0]
+  },
+  "demon_battle_prep": {
+    "tap": [408, 1000]
+  },
+  "demon_fight_end": {
+    "region": [376, 1001, 424, 1028],
+    "img": "img/end-fight-demon.png"
+  },
+  "failed_demon": {
+    "region": [264, 198, 533, 235],
+    "img": "img/failed_demon.png"
+  },
+  "ok_failed_demon": {
+    "tap": [396, 1015]
+  },
+  "back_to_map": {
+    "region": [214, 612, 241, 674],
+    "tap": [307, 640],
+    "img": "img/back_to_map.png"
+  },
+  "demon_fight_end_ok": {
+    "tap": [402, 1008]
+  },
+  "demon_screen_tap": {
+    "tap": [399, 1058]
+  },
+  "demon_stars_1": {
+    "tap": [241, 363]
+  },
+  "demon_stars_2": {
+    "tap": [414, 371]
+  },
+  "demon_stars_3": {
+    "tap": [589, 374]
+  },
+
+  "village_1_enter": {
+    "tap": [200, 485]
+  },
+  "village_2_enter": {
+    "tap": [396, 480]
+  },
+  "village_3_enter": {
+    "tap": [590, 481]
+  },
+  "village_4_enter": {
+    "tap": [204, 646]
+  },
+  "village_5_enter": {
+    "tap": [391, 642]
+  },
+  "village_6_enter": {
+    "tap": [598, 646]
+  },
+  "village_next": {
+    "tap": [659, 146]
+  },
+  "village_difficulty": {
+    "region": [604, 437, 635, 470],
+    "img": "img/difficulty.png"
+  },
+  "village_last_difficulty_one_star": {
+    "tap": [384, 737]
+  },
+  "village_last_difficulty_multi_star": {
+    "tap": [399, 444]
+  },
+  "demon_appeared_cancel": {
+    "tap": [347, 940],
+    "rgb": [151, 70, 48]
+  },
+
+  "auto_achievement_enabled": {
+    "tap": [647, 261],
+    "rgb": [60, 124, 170]
+  },
+  "multi_clear_disabled": {
+    "tap": [561, 268],
+    "rgb": [76, 59, 35]
+  },
+  "multi_achievement_disabled": {
+    "tap": [648, 262],
+    "rgb": [114, 91, 58]
+  },
+  "clear_all_villages": {
+    "tap": [402, 894]
+  },
+  "clear_finished_ok": {
+    "tap": [455, 959],
+    "rgb": [46, 167, 113]
+  },
+
+  "village_1_slot": {
+    "tap": [200, 450],
+    "region": [189, 397, 221, 429]
+  },
+  "village_2_slot": {
+    "tap": [393, 456],
+    "region": [375, 400, 419, 432]
+  },
+  "village_3_slot": {
+    "tap": [595, 450],
+    "region": [575, 400, 611, 429]
+  },
+  "village_4_slot": {
+    "tap": [197, 620],
+    "region": [187, 563, 223, 598]
+  },
+  "village_5_slot": {
+    "tap": [399, 611],
+    "region": [379, 563, 420, 597]
+  },
+  "village_6_slot": {
+    "tap": [595, 623],
+    "region": [575, 563, 612, 595]
+  },
+
+  "village_done": {
+    "rgb": [188, 1, 2]
+  },
+  "village_1_done": {
+    "region": [116, 501, 296, 560]
+  },
+  "village_2_done": {
+    "region": [317, 499, 477, 558]
+  },
+  "village_3_done": {
+    "region": [511, 498, 660, 559]
+  },
+  "village_4_done": {
+    "region": [126, 665, 281, 730]
+  },
+  "village_5_done": {
+    "region": [317, 666, 476, 728]
+  },
+  "village_6_done": {
+    "region": [513, 668, 668, 732]
+  },
+
+  "village_1_ticket": {
+    "tap": [200, 414],
+    "rgb": [235, 204, 49]
+  },
+  "village_2_ticket": {
+    "tap": [395, 414],
+    "rgb": [233, 200, 45]
+  },
+  "village_3_ticket": {
+    "tap": [588, 414],
+    "rgb": [236, 205, 51]
+  },
+  "village_4_ticket": {
+    "tap": [201, 578],
+    "rgb": [251, 239, 79]
+  },
+  "village_5_ticket": {
+    "tap": [395, 579],
+    "rgb": [241, 215, 58]
+  },
+  "village_6_ticket": {
+    "tap": [590, 579],
+    "rgb": [241, 217, 61]
+  },
+  "unblock_demon": {
+    "tap": [634, 62]
+  }
+}

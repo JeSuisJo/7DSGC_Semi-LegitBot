@@ -1,0 +1,56 @@
+{
+  "recycle_menu": {
+    "tap": [54, 555]
+  },
+  "recycle_config": {
+    "tap": [180, 1043]
+  },
+  "recycle_grade_c": {
+    "tap": [325, 210],
+    "rgb": [75, 68, 54]
+  },
+  "recycle_grade_uc": {
+    "tap": [382, 207],
+    "rgb": [111, 98, 74]
+  },
+  "recycle_grade_r": {
+    "tap": [434, 212],
+    "rgb": [58, 75, 85]
+  },
+  "recycle_grade_sr": {
+    "tap": [494, 214],
+    "rgb": [34, 18, 12]
+  },
+  "recycle_grade_ssr": {
+    "tap": [545, 214],
+    "rgb": [92, 65, 130]
+  },
+  "recycle_upgrade_items": {
+    "tap": [434, 547],
+    "rgb": [0, 134, 180]
+  },
+  "recycle_select_all": {
+    "tap": [596, 723],
+    "rgb": [1, 106, 142]
+  },
+  "recycle_save": {
+    "tap": [405, 973]
+  },
+  "recycle_all": {
+    "tap": [396, 1020]
+  },
+  "recycle_high_grade_ok": {
+    "tap": [562, 625],
+    "rgb": [29, 148, 91]
+  },
+  "recycle_confirm": {
+    "tap": [472, 1011],
+    "rgb": [62, 148, 79]
+  },
+  "recycle_dismiss": {
+    "tap": [662, 32]
+  },
+  "recycle_back": {
+    "tap": [34, 32]
+  }
+}

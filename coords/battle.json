@@ -1,0 +1,79 @@
+{
+  "battle_config_button": {
+    "tap": [142, 1018]
+  },
+  "battle_config_ok": {
+    "tap": [453, 754],
+    "rgb": [45, 169, 116]
+  },
+  "battle_auto_button": {
+    "tap": [194, 1017]
+  },
+  "battle_start": {
+    "tap": [406, 1016]
+  },
+
+  "auto_potion_off": {
+    "tap": [239, 624],
+    "rgb": [54, 48, 39]
+  },
+  "auto_potion_on": {
+    "tap": [239, 624],
+    "rgb": [236, 203, 46]
+  },
+  "repeat_infinite_off": {
+    "tap": [239, 369],
+    "rgb": [54, 48, 39]
+  },
+  "repeat_infinite_on": {
+    "tap": [239, 369],
+    "rgb": [236, 203, 46]
+  },
+  "repeat_count_off": {
+    "tap": [239, 419],
+    "rgb": [54, 48, 39]
+  },
+  "repeat_count_on": {
+    "tap": [239, 419],
+    "rgb": [236, 203, 46]
+  },
+  "repeat_count_field": {
+    "tap": [493, 413]
+  },
+
+  "ticket_menu_button": {
+    "tap": [609, 1025]
+  },
+  "ticket_menu_ok": {
+    "tap": [469, 855],
+    "rgb": [42, 158, 104]
+  },
+  "ticket_max": {
+    "tap": [580, 699],
+    "rgb": [201, 157, 54]
+  },
+  "ticket_start": {
+    "tap": [411, 869]
+  },
+  "ticket_skip": {
+    "tap": [397, 116]
+  },
+  "ticket_back": {
+    "tap": [43, 29]
+  },
+
+  "pve_end": {
+    "region": [376, 943, 428, 974],
+    "img": "img/ok-end-level.png"
+  },
+  "pve_end_alt": {
+    "region": [374, 942, 430, 972],
+    "img": "img/ok-end-level.png"
+  },
+  "pve_repeat_ok": {
+    "tap": [399, 956]
+  },
+  "pve_level_ok": {
+    "tap": [510, 1011]
+  }
+}

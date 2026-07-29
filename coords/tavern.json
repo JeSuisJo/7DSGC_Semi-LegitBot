@@ -1,0 +1,137 @@
+{
+  "beer_menu_season_1": {
+    "tap": [60, 558]
+  },
+  "beer_menu_season_3": {
+    "tap": [54, 731]
+  },
+  "beer_menu_anime": {
+    "tap": [57, 322]
+  },
+  "beer_side_menu": {
+    "tap": [54, 894]
+  },
+  "beer_back": {
+    "tap": [37, 29]
+  },
+  "beer_collect_season_1": {
+    "tap": [110, 392]
+  },
+  "beer_scroll_season_3": {
+    "swipe": [408, 693, 43, 693, 800]
+  },
+  "beer_collect_season_3": {
+    "tap": [276, 336]
+  },
+  "beer_collect_season_3_confirm": {
+    "tap": [335, 336]
+  },
+  "beer_scroll_anime": {
+    "swipe": [422, 652, 16, 652, 1000]
+  },
+  "beer_collect_anime": {
+    "tap": [212, 503]
+  },
+  "beer_dismiss": {
+    "tap": [387, 120]
+  },
+
+  "food_menu": {
+    "tap": [57, 737]
+  },
+  "food_recipe_menu": {
+    "tap": [75, 1002]
+  },
+  "food_first_recipe": {
+    "tap": [604, 504],
+    "rgb": [186, 128, 12]
+  },
+  "food_cook": {
+    "tap": [405, 1008]
+  },
+  "food_done_disabled": {
+    "tap": [570, 969],
+    "rgb": [108, 108, 108]
+  },
+  "food_done_enabled": {
+    "tap": [570, 969],
+    "rgb": [231, 163, 20]
+  },
+  "food_back": {
+    "tap": [40, 32]
+  },
+  "friends_option": {
+    "region": [496, 205, 582, 265],
+    "img": "img/friends.png"
+  },
+  "friends_option_button": {
+    "tap": [644, 1011]
+  },
+  "friends_list": {
+    "tap": [563, 234]
+  },
+  "friends_send": {
+    "tap": [253, 921]
+  },
+  "friends_send_exhausted": {
+    "tap": [392, 916],
+    "rgb": [114, 114, 114]
+  },
+  "friends_return": {
+    "tap": [265, 1005]
+  },
+
+  "expedition_screen": {
+    "region": [196, 955, 247, 998],
+    "img": "img/expedition.png",
+    "tap": [224, 982]
+  },
+  "take_reward": {
+    "region": [474, 949, 500, 1026],
+    "img": "img/take_reward.png",
+    "tap": [419, 987]
+  },
+  "expedition_button": {
+    "tap": [563, 351]
+  },
+  "expedition_send_team": {
+    "tap": [400, 984]
+  },
+  "expedition_items_atk": {
+    "tap": [570, 339]
+  },
+  "expedition_items_def": {
+    "tap": [570, 563]
+  },
+  "expedition_items_pv": {
+    "tap": [570, 786]
+  },
+  "expedition_items_cc": {
+    "tap": [570, 998]
+  },
+  "expedition_items_cr": {
+    "tap": [570, 753]
+  },
+  "expedition_items_rec": {
+    "tap": [570, 973]
+  },
+  "expedition_items_scroll_down": {
+    "swipe": [400, 950, 400, 250, 500]
+  },
+  "expedition_items_scroll_up": {
+    "swipe": [400, 250, 400, 950, 500]
+  },
+  "expedition_items_confirm": {
+    "region": [548, 569, 582, 642],
+    "img": "img/expedition_items_confirm.png",
+    "tap": [496, 602]
+  },
+  "expedition_not_finish": {
+    "region": [473, 946, 502, 1027],
+    "img": "img/expedition_not_finish.png",
+    "tap": [36, 38]
+  },
+  "back_home": {
+    "tap": [158, 1016]
+  }
+}

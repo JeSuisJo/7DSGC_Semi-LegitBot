@@ -1,0 +1,60 @@
+{
+  "special_dungeon_menu": {
+    "region": [299, 263, 404, 393],
+    "img": "img/special_dungeon.png"
+  },
+  "fort_solgales": {
+    "tap": [227, 368]
+  },
+  "special_dungeon_button": {
+    "tap": [390, 322]
+  },
+  "sara_arrow": {
+    "region": [104, 296, 702, 928],
+    "img": "img/sara_arrow.png"
+  },
+  "last_level": {
+    "region": [104, 296, 702, 928],
+    "img": "img/last_level.png"
+  },
+  "special_dungeon_return": {
+    "tap": [154, 1014]
+  },
+
+  "yggdrasil_screen": {
+    "region": [375, 38, 426, 82],
+    "img": "img/yggdrasil.png"
+  },
+  "yggdrasil_hub": {
+    "region": [4, 301, 795, 1069],
+    "img": "img/yggdrasil_hub.png"
+  },
+  "yggdrasil_blue": {
+    "tap": [192, 497]
+  },
+  "yggdrasil_yellow": {
+    "tap": [551, 357]
+  },
+  "yggdrasil_red": {
+    "tap": [568, 748]
+  },
+  "yggdrasil_difficulty_screen": {
+    "region": [565, 886, 608, 929],
+    "img": "img/yggdrasil_difficulty.png"
+  },
+  "yggdrasil_memory_1": {
+    "tap": [411, 900]
+  },
+  "yggdrasil_memory_2": {
+    "tap": [405, 766]
+  },
+  "yggdrasil_memory_3": {
+    "tap": [405, 625]
+  },
+  "yggdrasil_memory_4": {
+    "tap": [408, 485]
+  },
+  "yggdrasil_memory_5": {
+    "tap": [411, 333]
+  }
+}

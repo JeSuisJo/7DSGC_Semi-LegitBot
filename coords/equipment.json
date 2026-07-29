@@ -1,0 +1,57 @@
+{
+  "equipment_stat_atk": {
+    "tap": [146, 469]
+  },
+  "equipment_stat_def": {
+    "tap": [146, 529]
+  },
+  "equipment_stat_hp": {
+    "tap": [146, 588]
+  },
+  "equipment_stat_crit_chance": {
+    "tap": [146, 639]
+  },
+  "equipment_stat_crit_res": {
+    "tap": [146, 696]
+  },
+  "equipment_stat_recovery": {
+    "tap": [146, 751]
+  },
+
+  "equipment_difficulty_screen": {
+    "region": [604, 358, 641, 392],
+    "img": "img/equipment_difficulty_screen.png"
+  },
+  "equipment_last_difficulty": {
+    "tap": [408, 661]
+  },
+  "story_scroll_up": {
+    "swipe": [144, 464, 144, 795, 500]
+  },
+  "filter_equipement": {
+    "tap": [630, 480]
+  },
+  "filter_equipement_in_progress": {
+    "tap": [630, 553]
+  },
+  "filter_equipement_start": {
+    "tap": [623, 679]
+  },
+  "mission_equipement": {
+    "region": [303, 552, 426, 626],
+    "tap": [623, 585]
+  },
+  "quest_reward": {
+    "region": [339, 234, 447, 307],
+    "img": "img/quest_reward.png"
+  },
+  "new_quest_equipement": {
+    "region": [287, 633, 512, 812],
+    "img": "img/new_quest_equipement.png",
+    "tap": [401, 716]
+  },
+  "not_finish": {
+    "region": [662, 560, 681, 609],
+    "img": "img/not_finish.png"
+  }
+}
