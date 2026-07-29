@@ -247,29 +247,3 @@ JSON edit rather than a hunt through Python files.
 Adding a mode is a matter of dropping a new `features/<mode>/` folder (action
 files + a `runner.py`), adding `coords/<mode>.json`, and wiring it into
 `features/registry.py`.
-
-## Development
-
-```bash
-pip install -e ".[dev]"        # adds matplotlib for the helper scripts
-```
-
-There is **no test suite**: this is a script driving an emulator, so behaviour is
-verified by running the bot. `helper/` holds the tooling instead. The capture
-scripts print their output ready to paste into a `coords/*.json` entry:
-
-| Script                        | What it does                                                 |
-| ----------------------------- | ------------------------------------------------------------ |
-| `find_coords.py`              | Click a screenshot → prints `"tap"` and `"rgb"`               |
-| `crop_by_clicks.py`           | Click two corners → prints `"region"`, saves the crop         |
-| `make_a_screen.py`            | Capture one fixed region (no GUI needed)                     |
-| `capture_equipment_reward.py` | File a gear icon into `img/equipement/<stat>/`               |
-| `test_color.py`               | Probe one entry's pixel against its `rgb` (pick a tolerance)  |
-| `test_fight_end.py`           | Print the live match scores of the win/loss markers          |
-| `test_village_tickets.py`     | Sample the six village tick boxes, say which read as ticked  |
-| `check_coords.py`             | Check `coords/*.json` against the code (no emulator needed)  |
-
-`check_coords.py` is worth a run after touching `coords/*.json` or `img/`: it
-catches a coord name defined twice, a reference image that no longer exists, or
-a typo in a name used by the code. All of them otherwise surface twenty
-minutes into a run.
