@@ -6,6 +6,10 @@ from ... import console, screen
 from .clear import VILLAGES, villages_to_farm
 from .stars import select_stars
 
+# The lit tick box shifts shade from one star list to the next, wide enough to
+# need a loose match.
+TICKED = 20
+
 
 def run_villages_ticket(stars, title, skip_done=False):
     """Tick every free village, then fire the single multi-village clear.
@@ -39,7 +43,7 @@ def run_villages_ticket(stars, title, skip_done=False):
         to_toggle = [
             village
             for village in VILLAGES
-            if screen.is_color(f"village_{village}_ticket") != (village in free)
+            if screen.is_color(f"village_{village}_ticket", TICKED) != (village in free)
         ]
 
     for village in to_toggle:
