@@ -8,7 +8,7 @@
     "img": "img/in_3v3_pvp.png"
   },
   "pvp_hub": {
-    "region": [3, 294, 796, 1073],
+    "region": [9, 314, 793, 981],
     "img": "img/pvp_hub.png"
   },
   "pvp_3v3_confirm_low": {
