@@ -1,5 +1,3 @@
-"""Claim finished expeditions and send the team back out."""
-
 import time
 
 from ... import console, screen
@@ -7,7 +5,6 @@ from ...config import get_config
 
 TITLE = "Expeditions"
 
-# Which bonus to pick is read from config.json ("expedition_items").
 ITEMS = {
     "atk": "expedition_items_atk",
     "def": "expedition_items_def",
@@ -17,7 +14,6 @@ ITEMS = {
     "recovery": "expedition_items_rec",
 }
 
-# The last two sit below the fold, so the list has to be scrolled down first.
 ITEMS_BELOW_THE_FOLD = ("crit_res", "recovery")
 
 DEFAULT_ITEM = "atk"
@@ -87,7 +83,6 @@ def _choose_item():
 
 
 def _handle_finish():
-    """Press through the send-off popups until the expedition list is back."""
     screen.tap_until("unblock", "expedition_not_finish")
     print("Back to the tavern")
     time.sleep(1.5)

@@ -1,25 +1,16 @@
-"""Standard battle preparation: auto-potions on, repeats set, start."""
-
 import time
 
 from .. import screen
 
-# Levels chained per equipment run; the repeat field holds two digits.
 REPEATS = 8
 
 
 def run_battle_preparation(repeats=None):
-    """Configure the battle panel, then start the fight.
-
-    ``repeats`` is the number of levels to chain; ``None`` uses the
-    infinite-repeat toggle instead.
-    """
     screen.wait("battle_prep")
 
     print("Battle preparation configuration")
     screen.tap("battle_config_button")
 
-    # The OK button appearing is what tells us the config panel is open.
     screen.wait_color("battle_config_ok")
 
     _toggle_on(
@@ -47,7 +38,6 @@ def run_battle_preparation(repeats=None):
 
 
 def run_battle_preparation_equipment(repeats=REPEATS):
-    """An equipment run is counted in levels, so it fills the repeat field."""
     run_battle_preparation(repeats)
 
 
@@ -67,7 +57,6 @@ def _set_repeat_count(repeats):
     screen.tap("repeat_count_field")
     time.sleep(1)
 
-    # The field keeps its previous value, so clear both digits before typing.
     screen.delete()
     time.sleep(0.5)
     screen.delete()
@@ -80,7 +69,6 @@ def _set_repeat_count(repeats):
 
 
 def start_battle():
-    """Start the fight, refilling ACT once if the game asks for it."""
     print("Starting battle")
     screen.tap("battle_start")
     time.sleep(2)
@@ -92,13 +80,11 @@ def start_battle():
         print("Restarting battle")
         screen.tap("battle_start")
 
-    # A diamond prompt means the potions ran out too: nothing left to spend.
     if screen.see("no_potions"):
         screen.stop("No more ACT and no more potions")
 
 
 def _toggle_on(off_name, on_name, turned_on_msg, already_on_msg):
-    """Wait for a toggle to be readable, then make sure it ends up enabled."""
     while True:
         with screen.frame():
             off = screen.is_color(off_name)

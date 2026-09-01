@@ -1,5 +1,3 @@
-"""Run one equipment level: pick the stat, start the mission, fight, come back."""
-
 import time
 
 from ... import screen
@@ -10,7 +8,6 @@ from ...battle import (
 )
 from ...coords import equipment_images
 
-# Stat to farm -> the tile to tap in the equipment menu.
 STATS = {
     "atk": ("Attack", "equipment_stat_atk"),
     "def": ("Defence", "equipment_stat_def"),
@@ -20,19 +17,12 @@ STATS = {
     "recovery": ("Recovery Rate", "equipment_stat_recovery"),
 }
 
-# Swipes needed to bring the story list back to the top.
 STORY_SCROLLS = 4
 
-# The reward icons are drawn at a fixed size, so no multi-scale search.
 REWARD_SCALES = (1.0,)
 
 
 def mission_on_screen(stat):
-    """True when a ``stat`` equipment quest sits in the list.
-
-    The row is identified by the gear it rewards, which also proves it is the
-    right stat's quest.
-    """
     images = equipment_images(stat)
     if not images:
         screen.stop(f"No reference image in img/equipement/{stat}/")
@@ -40,7 +30,6 @@ def mission_on_screen(stat):
 
 
 def open_mission_list(stat):
-    """Go from the tavern to the ``stat`` quests, filtered on the ones in progress."""
     screen.wait_home()
 
     print("Quest Menu")
@@ -63,14 +52,11 @@ def open_mission_list(stat):
     screen.tap("filter_equipement")
     time.sleep(1.5)
 
-    # The mission is already picked when it shows up under the "in progress"
-    # filter; otherwise it still has to be started from the "not started" one.
     screen.tap("filter_equipement_in_progress")
     time.sleep(3)
 
 
 def claim_reward():
-    """Take the gear of a finished quest, then accept the one it offers next."""
     screen.tap("mission_equipement")
     time.sleep(2)
     screen.wait("quest_reward")
@@ -85,7 +71,6 @@ def claim_reward():
 
 
 def claim_last_reward(stat):
-    """Collect the gear of the last level, which no further run would claim."""
     open_mission_list(stat)
 
     if not mission_on_screen(stat) or screen.see("not_finish"):
@@ -99,11 +84,6 @@ def claim_last_reward(stat):
 
 
 def farm_equipment(stat, configure):
-    """Farm one level of ``stat``.
-
-    ``configure`` fills in the battle config panel; later levels reuse the
-    settings of the first one and only need auto mode.
-    """
     open_mission_list(stat)
 
     if mission_on_screen(stat):
@@ -147,8 +127,6 @@ def farm_equipment(stat, configure):
     fight_pve()
     time.sleep(1)
 
-    # Back on the difficulty screen means the level is over; result popups can
-    # stand in the way, so they are tapped through.
     screen.tap_until("unblock", "equipment_difficulty_screen")
 
     print("Return to the tavern")

@@ -1,5 +1,3 @@
-"""Full daily routine: the eight chores, in order."""
-
 import time
 
 from ... import console, prompts, screen
@@ -22,8 +20,6 @@ def _step_pvp(title):
     pvp.daily_pvp()
 
 
-# (label, action) in run order. Step numbers are computed from this list, never
-# hardcoded in the actions.
 STEPS = [
     ("Collect beer", tavern.collect_beer),
     ("Food preparation", tavern.food_preparation),
@@ -37,7 +33,6 @@ STEPS = [
 
 
 def prepare():
-    """Ask which chores to skip; returns the set of done step indices (1-based)."""
     console.banner(TITLE)
 
     if not prompts.ask_yes_no("Have some daily tasks already been done today?"):
@@ -52,7 +47,6 @@ def run(done=None):
     done = done or set()
     console.banner(TITLE)
 
-    # Always run at every start, never a skippable daily.
     equipment.recycle_equipement()
     time.sleep(PAUSE)
 

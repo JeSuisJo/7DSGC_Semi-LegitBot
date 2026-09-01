@@ -1,5 +1,3 @@
-"""Daily 1v1 PvP: run matches until the tickets are gone."""
-
 import time
 
 from ... import screen
@@ -31,8 +29,6 @@ def daily_pvp():
 
 def _fight_until_out_of_tickets():
     while True:
-        # The buy-tickets prompt comes in two artworks depending on whether
-        # any diamonds are left; either one means we are done.
         time.sleep(1.5)
         if screen.see_any_template("pvp_no_tickets", "pvp_no_tickets_alt"):
             print("No more PvP tickets")
@@ -71,13 +67,11 @@ def _fight_until_out_of_tickets():
 
 
 def _run_match():
-    """Tap through one auto-fought match until its result is dismissed."""
     while True:
         if screen.see("pvp_leave"):
             time.sleep(1)
             screen.tap("pvp_leave_ok")
 
-        # Read the finish state before tapping: the tap may dismiss it.
         finished = screen.see("pvp_finish")
         screen.tap("pvp_battle_tap")
 

@@ -1,5 +1,3 @@
-"""Daily 3v3 PvP: claim the reward, then spend the tickets."""
-
 import time
 
 from ... import console, screen
@@ -16,7 +14,6 @@ def daily_3v3(title=TITLE):
     screen.tap_found("pvp_hub")
     print("Go to 3V3")
 
-    # Wait for the 3v3 lobby, dismissing the season popups on the way.
     screen.wait_or_tap_color(
         "pvp_3v3_screen",
         "pvp_3v3_confirm_low",
@@ -26,8 +23,6 @@ def daily_3v3(title=TITLE):
     )
     time.sleep(4)
 
-    # The daily chest is a bright green badge; tolerance is loose because it
-    # animates.
     _claim_reward("pvp_3v3_daily_reward", "Daily reward", tolerance=50)
 
     if get_config().is_true("only_reward_3v3"):
@@ -39,7 +34,6 @@ def daily_3v3(title=TITLE):
 
 
 def _claim_reward(name, label, tolerance):
-    """Claim a reward badge if it is lit: tap it, then tap through its popup."""
     if screen.is_color(name, tolerance):
         print(f"{label} available")
         screen.tap(name)
@@ -52,7 +46,6 @@ def _claim_reward(name, label, tolerance):
 
 
 def _spend_tickets():
-    """Fight until the tickets run out, then collect the win reward."""
     while True:
         screen.tap("pvp_3v3_fight")
         time.sleep(1.5)
@@ -62,7 +55,6 @@ def _spend_tickets():
         screen.tap("pvp_3v3_start")
         time.sleep(3)
 
-        # Landing back in a plain menu means there was no ticket left to use.
         if screen.see("in_menu"):
             print("All tickets used")
             screen.tap("pvp_3v3_exit")

@@ -1,9 +1,3 @@
-"""Collect the tavern beer.
-
-The beer sits in a different spot in each salon design, so the walk there is
-per-design; everything after it is shared.
-"""
-
 import time
 
 from ... import console, screen

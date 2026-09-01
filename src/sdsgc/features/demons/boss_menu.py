@@ -1,5 +1,3 @@
-"""Navigate from the tavern to the boss menu."""
-
 import time
 
 from ... import screen

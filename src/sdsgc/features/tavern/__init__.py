@@ -1,5 +1,3 @@
-"""Tavern chores: beer, cooking, expeditions and friend points."""
-
 from .beer import collect_beer
 from .expeditions import run_expeditions
 from .food import food_preparation

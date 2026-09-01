@@ -1,19 +1,3 @@
-"""Create config.json on a fresh install, backfill what is missing on upgrade.
-
-One ordered list of questions (:data:`QUESTIONS`) serves three cases, checked
-before every start:
-
-* **no config.json**: ask everything and write the file;
-* **a key is absent** (a release added an option): ask only that one;
-* **a key holds a value no feature understands** (a typo, or an option that
-  disappeared): show it and ask again.
-
-Without this the bot runs on silent fallbacks: an unknown ``salon_design``
-skips the beer, a missing ``demon_difficulties`` entry fights every demon on
-easy. To expose a new option, add one :class:`Question` row and its default in
-:mod:`.defaults`; all three cases pick it up.
-"""
-
 import json
 import os
 import shutil
@@ -45,8 +29,6 @@ DIFFICULTIES_KEY = "demon_difficulties"
 
 @dataclass(frozen=True)
 class Question:
-    """One config key: what to ask, and which values are accepted."""
-
     key: str
     prompt: str
     options: tuple
@@ -96,7 +78,6 @@ QUESTIONS = [
 
 
 def ensure_config():
-    """Check config.json before a run, asking for whatever it cannot answer."""
     existing = _read()
 
     if existing is None:
@@ -114,13 +95,11 @@ def ensure_config():
 
 
 def _value_of(config, question):
-    """Return the stored value when it is one this question accepts, else None."""
     value = config.get(question.key)
     return value if value in question.options else None
 
 
 def _unset_demons(config):
-    """Demons with no difficulty, or one no longer offered."""
     difficulties = config.get(DIFFICULTIES_KEY)
     if not isinstance(difficulties, dict):
         return list(DEMONS)
@@ -147,7 +126,6 @@ def _run(config, questions, demons, fresh):
         config.setdefault(DIFFICULTIES_KEY, {})
         _ask_difficulties(config, demons)
 
-    # Keys the wizard never asks about still have to exist.
     for key, value in DEFAULTS.items():
         config.setdefault(key, value)
 
@@ -158,7 +136,6 @@ def _run(config, questions, demons, fresh):
 
 
 def _report(config, questions, demons):
-    """Say why each question is coming back: absent, or holding a bad value."""
     for question in questions:
         stored = config.get(question.key)
         if question.key not in config:
@@ -172,12 +149,6 @@ def _report(config, questions, demons):
 
 
 def _ask_difficulties(config, demons):
-    """Ask one difficulty and apply it to every demon still unset.
-
-    Per-demon values are kept and can be fine-tuned in config.json; only the
-    ones the bot cannot read are asked for. A demon added by a new release
-    defaults to what the others are already set to.
-    """
     listed = ", ".join(demons)
     difficulty = ask_choice(
         f"Difficulty to fight these demons at ({listed})?",
@@ -189,7 +160,6 @@ def _ask_difficulties(config, demons):
 
 
 def _usual_difficulty(config):
-    """The difficulty the already-configured demons use, most common first."""
     settled = [
         value
         for value in (config.get(DIFFICULTIES_KEY) or {}).values()
@@ -201,7 +171,6 @@ def _usual_difficulty(config):
 
 
 def _read():
-    """Return the config on disk, or None when it is absent or unreadable."""
     if not os.path.exists(CONFIG_PATH):
         return None
     try:

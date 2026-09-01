@@ -1,5 +1,3 @@
-"""Detect which demon sits in each village, then clear them one by one."""
-
 import time
 from collections import Counter
 
@@ -12,14 +10,12 @@ VILLAGES = range(1, 7)
 
 
 def detect_demons_in_villages():
-    """Return ``{village: demon_name or None}`` for the six villages."""
     if screen.is_color("multi_clear_disabled"):
         print("Activated achievement auto")
         screen.tap("multi_clear_disabled")
         time.sleep(1)
 
     detected = {}
-    # One capture answers all 36 thumbnail comparisons.
     with screen.frame():
         for village in VILLAGES:
             slot = f"village_{village}_slot"
@@ -34,21 +30,10 @@ def detect_demons_in_villages():
 
 
 def free_villages():
-    """Return the villages holding no demon yet, in order.
-
-    A village that already spawned a demon keeps its slot taken until that
-    demon is cleared, so farming it is wasted ACT.
-    """
     return [village for village, demon in detect_demons_in_villages().items() if demon is None]
 
 
 def done_villages():
-    """Return the villages already finished, in order.
-
-    Two and three star villages cap the clears per day: once a village hits
-    that cap it keeps its marker until the daily reset and cannot be farmed
-    again. One star has no cap and never shows the marker.
-    """
     with screen.frame():
         done = [
             village
@@ -61,11 +46,6 @@ def done_villages():
 
 
 def villages_to_farm(skip_done=False):
-    """Return the villages worth entering, or ``None`` when all are finished.
-
-    ``None`` is the case where the whole chore is pointless: no village can be
-    farmed and no demon can spawn, so the caller has nothing left to clear.
-    """
     done = done_villages() if skip_done else []
     if len(done) == len(VILLAGES):
         return None
@@ -73,11 +53,6 @@ def villages_to_farm(skip_done=False):
 
 
 def clear_demons(target_demons=None):
-    """Fight one demon per distinct kind found, most frequent first.
-
-    A single fight clears every village holding that demon, so only the first
-    village of each kind is entered.
-    """
     detected = detect_demons_in_villages()
 
     if target_demons:

@@ -1,5 +1,3 @@
-"""Walk the villages one by one, fighting the free ones without tickets."""
-
 import time
 
 from ... import console, screen
@@ -9,21 +7,11 @@ from .stars import select_stars, star_mode
 
 
 def run_villages(stars, title, skip_done=False):
-    """Clear the villages that hold no demon yet, at the given star count.
-
-    Only the first fought village configures the battle panel; the ones after
-    it reuse those settings, which is why the loop switches to auto.
-
-    Returns False when every village is already finished, so the caller can
-    drop the demon clearing that would follow.
-    """
     console.banner(title)
 
     select_stars(stars)
     time.sleep(1.5)
 
-    # This mode fights village by village, so the multi-village auto-clear
-    # must be off.
     if screen.is_color("auto_achievement_enabled"):
         print("Deactivated achievement auto")
         screen.tap("auto_achievement_enabled")
@@ -46,8 +34,6 @@ def run_villages(stars, title, skip_done=False):
     cycle_village(mode, configure=True)
     time.sleep(1)
 
-    # The "next" arrow steps through the villages one by one, so the occupied
-    # ones between two free ones are still opened, and left again at once.
     for village in range(first + 1, last + 1):
         console.banner(title)
         print(f"Village {village}")

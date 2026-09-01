@@ -1,5 +1,3 @@
-"""Platform-independent screen matching, on top of a driver's ``screenshot()``."""
-
 import math
 import os
 import time
@@ -13,19 +11,15 @@ from ..paths import resolve
 
 @lru_cache(maxsize=None)
 def reference(path):
-    """Return a reference image, decoded once and kept in memory."""
     return Image.open(resolve(path)).convert("RGB")
 
 
 class StopScript(Exception):
-    """Raised to abort a run cleanly (no ACT left, defeat, ...)."""
-
     def __init__(self, msg="Script stopped"):
         super().__init__(msg)
 
 
 def similarity(img1, img2):
-    """Return a 0..1 similarity score between two RGB images."""
     if img1.size != img2.size:
         img2 = img2.resize(img1.size, Image.Resampling.LANCZOS)
     hist = ImageChops.difference(img1, img2).histogram()
@@ -35,12 +29,8 @@ def similarity(img1, img2):
 
 
 class Driver:
-    """Subclasses implement the transport; everything below is shared."""
-
-    # ---------------- To implement ----------------
-
     def ensure_ready(self):
-        """Resolve the target device. Called once before each run."""
+        pass
 
     def screenshot(self, dest="temp.png"):
         raise NotImplementedError
@@ -60,12 +50,9 @@ class Driver:
     def delete(self):
         raise NotImplementedError
 
-    # ---------------- Frame ----------------
-
     _frozen = None
 
     def grab(self):
-        """Return the screen as an RGB image, the frozen one inside a frame."""
         if self._frozen is not None:
             return self._frozen
         temp = self.screenshot()
@@ -76,19 +63,12 @@ class Driver:
 
     @contextmanager
     def frame(self):
-        """Capture once and answer every match in the block from that capture.
-
-        Never wait inside a frame: the image never changes, so ``wait_*`` would
-        spin forever.
-        """
         previous = self._frozen
         self._frozen = self.grab()
         try:
             yield
         finally:
             self._frozen = previous
-
-    # ---------------- Image ----------------
 
     def compare_image(self, reference_path, region, threshold=0.95):
         shot = self.grab().crop(tuple(region))
@@ -99,11 +79,6 @@ class Driver:
             time.sleep(poll)
 
     def find_template(self, reference_path, region, threshold=0.9, scales=None):
-        """Slide the reference over ``region``; return its centre or None.
-
-        ``scales`` resizes the reference for a template captured at another
-        resolution. The sweep stops at the first scale clearing ``threshold``.
-        """
         import cv2
         import numpy as np
 
@@ -139,8 +114,6 @@ class Driver:
                 return found
             time.sleep(poll)
 
-    # ---------------- Colour ----------------
-
     def get_color(self, x, y):
         return self.grab().getpixel((x, y))
 
@@ -148,10 +121,6 @@ class Driver:
         return all(abs(a - b) <= tolerance for a, b in zip(self.get_color(x, y), target))
 
     def has_color(self, region, target, tolerance=10):
-        """True when at least one pixel of ``region`` matches ``target``.
-
-        For a marker whose exact spot inside its card is not fixed.
-        """
         low = [value - tolerance for value in target]
         high = [value + tolerance for value in target]
         return any(
@@ -162,8 +131,6 @@ class Driver:
     def wait_for_color(self, x, y, target, tolerance=10, poll=0.5):
         while not self.is_color(x, y, target, tolerance):
             time.sleep(poll)
-
-    # ---------------- Control ----------------
 
     def stop(self, msg="Script stopped"):
         raise StopScript(msg)

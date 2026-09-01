@@ -1,5 +1,3 @@
-"""Run the Yggdrasil dungeon at the configured level and memory."""
-
 import time
 
 from ... import console, screen

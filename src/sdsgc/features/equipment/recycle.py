@@ -1,5 +1,3 @@
-"""Recycle every low-grade item, configuring the filter first."""
-
 import time
 
 from ... import console, screen
@@ -61,7 +59,6 @@ def recycle_equipement():
 
 
 def _tap_unless_color(name, tapped_msg, already_msg):
-    """Tap a toggle unless its probe pixel already shows the wanted state."""
     if screen.is_color(name):
         print(already_msg)
     else:
@@ -70,9 +67,7 @@ def _tap_unless_color(name, tapped_msg, already_msg):
 
 
 def _configure_grades():
-    """Turn on every recycled grade, and make sure SSR stays off."""
     for name, label in RECYCLED_GRADES:
-        # The unlit colour is the one stored, so a match means "not selected".
         if screen.tap_if_color(name):
             print(f"Grade {label} activated")
         else:
@@ -95,7 +90,6 @@ def _configure_options():
 
 
 def _dismiss_results():
-    """Clear the result popups; a confirm dialog may appear part-way."""
     time.sleep(2.5)
     while True:
         with screen.frame():

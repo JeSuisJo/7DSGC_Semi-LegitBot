@@ -1,5 +1,3 @@
-"""Daily dungeons: Fort Solgales special stage and Yggdrasil."""
-
 from .special import run_special_dungeon
 from .yggdrasil import run_yggdrasil
 

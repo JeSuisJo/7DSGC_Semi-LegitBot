@@ -1,5 +1,3 @@
-"""Fight one demon at the difficulty configured for it."""
-
 import time
 
 from ... import screen
@@ -55,7 +53,6 @@ def fight_demon(demon_name):
 
 
 def _difficulty_for(demon_name):
-    """Look the demon's difficulty up in config, falling back to easy."""
     configured = get_config().get("demon_difficulties", {}).get(demon_name)
     if not configured:
         print(
@@ -70,8 +67,6 @@ def _difficulty_for(demon_name):
 
 
 def _confirm_start():
-    """Confirm the start prompt, which sits higher when the list holds
-    more than three demons, so both spots are checked."""
     for name in ("demon_start_many", "demon_start_few"):
         if screen.is_color(name):
             print("Start the demon")
@@ -80,7 +75,6 @@ def _confirm_start():
 
 
 def _wait_for_demon_menu(difficulty):
-    """Wait to land in the demon menu, refilling ACT if the game asks."""
     while True:
         with screen.frame():
             if screen.see("demon_menu"):
@@ -95,7 +89,6 @@ def _wait_for_demon_menu(difficulty):
             screen.tap(DIFFICULTIES[difficulty])
             time.sleep(1.5)
             _confirm_start()
-            # The diamond prompt only shows up once the refill was refused.
             no_potions = screen.see("no_potions")
 
         if no_potions:
@@ -104,7 +97,6 @@ def _wait_for_demon_menu(difficulty):
 
 
 def _invite_ai_friend():
-    """Pick an AI ally; the list row sits at one of two heights."""
     print("Add IA Friends")
     screen.tap("demon_invite_ai")
     time.sleep(2)
@@ -136,12 +128,6 @@ def _enable_auto():
 
 
 def _wait_for_end():
-    """Wait out the fight, then return ``"won"`` or ``"lost"``.
-
-    A popup can land on top of the result and hide both banners, so ``unblock``
-    is tapped until one of them shows; and the loss banner is read before
-    anything is tapped, so a defeat is not dismissed blindly.
-    """
     screen.tap_until_any("unblock_demon", "demon_fight_end", "failed_demon")
 
     if screen.see("failed_demon"):

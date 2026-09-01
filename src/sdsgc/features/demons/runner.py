@@ -1,5 +1,3 @@
-"""Auto Demon Farm mode, and the demon chore of the daily routine."""
-
 import time
 
 from ... import console, prompts
@@ -39,7 +37,6 @@ def run_daily(title=DAILY_TITLE):
     config = get_config()
     stars = config.get("daily_demon_stars")
 
-    # Only two and three star villages run out; one star can be farmed all day.
     skip_done = star_mode(stars) == "multi_star"
 
     go_to_boss_menu()

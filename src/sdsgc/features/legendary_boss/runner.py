@@ -1,5 +1,3 @@
-"""Legendary Boss mode: farm the boss a fixed number of times."""
-
 from ... import console, prompts
 from .fight import enter_battle, fight, launch
 

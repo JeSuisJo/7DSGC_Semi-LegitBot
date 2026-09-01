@@ -1,5 +1,3 @@
-"""Cook the first available recipe."""
-
 import time
 
 from ... import console, screen
@@ -32,8 +30,6 @@ def food_preparation(title=TITLE):
     time.sleep(1.5)
     screen.tap("food_cook")
 
-    # The cook button settles on one of two colours once the batch is done,
-    # depending on whether another recipe is still available.
     while True:
         with screen.frame():
             if screen.is_color("food_done_disabled") or screen.is_color("food_done_enabled"):

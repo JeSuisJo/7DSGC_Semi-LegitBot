@@ -1,5 +1,3 @@
-"""Terminal output helpers: the banner every mode prints, plus typed lines."""
-
 import os
 
 WIDTH = 50
@@ -11,7 +9,6 @@ def clear():
 
 
 def banner(title, *lines):
-    """Clear the screen and print the title between two rules, plus extras."""
     clear()
     print(SEP)
     print(title)

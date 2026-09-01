@@ -1,5 +1,3 @@
-"""Android emulator backend, driven through the bundled adb binary."""
-
 import re
 import subprocess
 import time
@@ -13,20 +11,14 @@ ADB = resolve("platform-tools/adb.exe")
 
 
 class AdbDriver(Driver):
-    """Talk to one emulator over adb."""
-
     def __init__(self, device_id=None):
         if device_id is None:
             device_id = config_module.get_config().get("device_id")
         self.device_id = device_id
 
-    # ---------------- Device resolution ----------------
-
     def ensure_ready(self):
-        """Resolve the emulator to drive, before a run."""
         configured = config_module.get_config().get("device_id")
 
-        # Saved device still online -> use it directly, skip detection.
         if configured and self._is_online(configured):
             self.device_id = configured
             return
@@ -37,7 +29,6 @@ class AdbDriver(Driver):
             self._use_device(devices[0], "ADB device auto-selected")
             return
 
-        # None found: the adb server may be wedged. Restart it once and retry.
         if not devices:
             print("No ADB device found, restarting ADB server...")
             self._restart_server()
@@ -52,8 +43,6 @@ class AdbDriver(Driver):
         if not devices:
             self.stop("No emulator detected. Start your emulator, then try again.")
 
-        # Several devices: only the user knows which one runs the game, and a
-        # saved id that got here is stale, so ask in both cases.
         self._use_device(self._ask_device(devices), "ADB device selected")
 
     @staticmethod
@@ -76,7 +65,6 @@ class AdbDriver(Driver):
 
     @staticmethod
     def _is_online(device_id):
-        """True if that one device answers, without scanning the whole list."""
         try:
             result = subprocess.run(
                 [ADB, "-s", device_id, "get-state"],
@@ -95,14 +83,11 @@ class AdbDriver(Driver):
 
     @classmethod
     def _describe(cls, device_id):
-        """``emulator-5554 - com.netmarble.nanagb``, the app on screen naming
-        the emulator that runs the game."""
         app = cls._foreground_app(device_id)
         return f"{device_id} - {app}" if app else device_id
 
     @classmethod
     def _foreground_app(cls, device_id):
-        """Package on screen, launcher only when nothing else is running."""
         dump = cls._probe(device_id, ["dumpsys", "activity", "activities"])
         found = re.findall(
             r"ResumedActivity[:=]\s*ActivityRecord\{\S+ \S+ (\S+)/(\S+)", dump
@@ -129,8 +114,6 @@ class AdbDriver(Driver):
         self.device_id = device_id
         config_module.save("device_id", device_id)
         print(f"{note}: {device_id}")
-
-    # ---------------- Transport ----------------
 
     def _run(self, cmd):
         base = [ADB, "-s", self.device_id] if self.device_id else [ADB]

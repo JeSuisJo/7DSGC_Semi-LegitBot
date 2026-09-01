@@ -1,5 +1,3 @@
-"""Send friendship points to every friend."""
-
 import time
 
 from ... import console, screen
@@ -22,7 +20,6 @@ def send_friends_points(title=TITLE):
     screen.tap("friends_list")
     time.sleep(1.5)
 
-    # The send button greys out once every friend has been given points.
     screen.tap_until_color("friends_send", "friends_send_exhausted", poll=1)
 
     screen.tap("friends_send")

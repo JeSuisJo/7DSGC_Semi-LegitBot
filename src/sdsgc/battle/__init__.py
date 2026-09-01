@@ -1,5 +1,3 @@
-"""Battle preparation and PvE fight handling, shared by several modes."""
-
 from .auto import battle_preparation_auto
 from .preparation import (
     run_battle_preparation,

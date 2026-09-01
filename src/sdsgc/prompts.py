@@ -1,5 +1,3 @@
-"""Interactive prompt helpers, one per answer shape."""
-
 from . import console
 
 
@@ -18,7 +16,6 @@ def ask_int(prompt, minimum=1):
 
 
 def ask_from_list(prompt, options):
-    """Ask the user to pick one entry from ``options``; returns its 1-based index."""
     print(f"\n{prompt}")
     for i, option in enumerate(options, 1):
         print(f"  [{i}] {option}")
@@ -30,11 +27,6 @@ def ask_from_list(prompt, options):
 
 
 def ask_choice(prompt, options, default, labels=None):
-    """Pick one value from ``options``; an empty answer keeps ``default``.
-
-    ``labels`` renders each option for the user when the stored value is not
-    self-explanatory (``"1"`` -> ``"Season 1"``). Returns the option itself.
-    """
     shown = labels or options
     print(f"\n{prompt}")
     for i, label in enumerate(shown, 1):
@@ -55,7 +47,6 @@ def ask_yes_no(prompt):
 
 
 def ask_many_from_list(prompt, options):
-    """Ask for several entries, space- or comma-separated; returns a set of indices."""
     print(f"\n{prompt}")
     for i, option in enumerate(options, 1):
         print(f"  [{i}] {option}")

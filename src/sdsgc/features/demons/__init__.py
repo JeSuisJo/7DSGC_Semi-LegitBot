@@ -1,5 +1,3 @@
-"""Demon villages: detection, fights, and the auto-farm mode."""
-
 from .boss_menu import go_to_boss_menu
 from .clear import clear_demons
 from .runner import prepare, run, run_daily

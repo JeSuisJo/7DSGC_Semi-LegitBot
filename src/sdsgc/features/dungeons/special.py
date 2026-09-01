@@ -1,5 +1,3 @@
-"""Run the daily special dungeon in Fort Solgales."""
-
 import time
 
 from ... import console, screen

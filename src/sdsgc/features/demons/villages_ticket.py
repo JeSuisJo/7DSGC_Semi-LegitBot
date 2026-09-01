@@ -1,23 +1,13 @@
-"""Clear the six villages in one go by spending auto-clear tickets."""
-
 import time
 
 from ... import console, screen
 from .clear import VILLAGES, villages_to_farm
 from .stars import select_stars
 
-# The lit tick box shifts shade from one star list to the next, wide enough to
-# need a loose match.
 TICKED = 20
 
 
 def run_villages_ticket(stars, title, skip_done=False):
-    """Tick every free village, then fire the single multi-village clear.
-
-    The multi-clear already leaves the finished villages out, so ``skip_done``
-    only serves to spot the run where all six are finished; it returns False
-    then, and the caller drops the demon clearing that would follow.
-    """
     console.banner(title)
 
     if screen.is_color("multi_achievement_disabled"):
@@ -36,9 +26,6 @@ def run_villages_ticket(stars, title, skip_done=False):
         print("Every village already holds a demon, nothing to farm")
         return True
 
-    # Each village has its own tick box; an unlit box means it is not selected.
-    # Only the free ones are worth a ticket, so the occupied ones are unticked
-    # when the game left them selected. One capture reads all six boxes.
     with screen.frame():
         to_toggle = [
             village
@@ -55,8 +42,6 @@ def run_villages_ticket(stars, title, skip_done=False):
     screen.tap("clear_all_villages")
     time.sleep(2)
 
-    # Being sent home instead of into the clear means there was nothing to
-    # spend: no ACT and no potions left.
     if screen.see("home"):
         screen.stop("No more ACT and no more potions")
 

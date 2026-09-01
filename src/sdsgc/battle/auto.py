@@ -1,9 +1,3 @@
-"""Battle preparation reusing the settings of the previous run.
-
-Once a run has configured auto-mode, later runs only need the auto button and
-the start button, so this skips the whole config panel.
-"""
-
 import time
 
 from .. import screen

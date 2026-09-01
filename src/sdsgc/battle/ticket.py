@@ -1,5 +1,3 @@
-"""Battle preparation that spends auto-clear tickets instead of fighting."""
-
 import time
 
 from .. import screen
@@ -12,10 +10,8 @@ def run_battle_preparation_ticket():
     screen.tap("ticket_menu_button")
     time.sleep(1)
 
-    # The confirm button appearing is what tells us the ticket panel is open.
     screen.wait_color("ticket_menu_ok")
 
-    # Tap the stepper until it maxes out (its colour changes when it does).
     while not screen.is_color("ticket_max"):
         screen.tap("ticket_max")
         print("Clicking for the maximum tickets use")
