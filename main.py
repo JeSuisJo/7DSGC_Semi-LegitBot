@@ -1,9 +1,3 @@
-"""Launcher kept at the project root so `python main.py` still works.
-
-The bot itself lives in `src/sdsgc`; install it with `pip install -e .` to use
-`python -m sdsgc` instead.
-"""
-
 import os
 import sys
 
