@@ -1,5 +1,6 @@
 """Android emulator backend, driven through the bundled adb binary."""
 
+import re
 import subprocess
 import time
 
@@ -51,12 +52,9 @@ class AdbDriver(Driver):
         if not devices:
             self.stop("No emulator detected. Start your emulator, then try again.")
 
-        # Several devices. Ask only when nothing was configured; otherwise the
-        # saved entry is stale, so adopt the first without prompting.
-        if configured:
-            self._use_device(devices[0], "ADB device auto-updated")
-        else:
-            self._use_device(self._ask_device(devices), "ADB device selected")
+        # Several devices: only the user knows which one runs the game, and a
+        # saved id that got here is stale, so ask in both cases.
+        self._use_device(self._ask_device(devices), "ADB device selected")
 
     @staticmethod
     def list_devices():
@@ -90,9 +88,42 @@ class AdbDriver(Driver):
             return False
         return result.returncode == 0 and result.stdout.strip() == "device"
 
+    @classmethod
+    def _ask_device(cls, devices):
+        labels = [cls._describe(device) for device in devices]
+        return devices[ask_from_list("Multiple devices connected:", labels) - 1]
+
+    @classmethod
+    def _describe(cls, device_id):
+        """``emulator-5554 - com.netmarble.nanagb``, the app on screen naming
+        the emulator that runs the game."""
+        app = cls._foreground_app(device_id)
+        return f"{device_id} - {app}" if app else device_id
+
+    @classmethod
+    def _foreground_app(cls, device_id):
+        """Package on screen, launcher only when nothing else is running."""
+        dump = cls._probe(device_id, ["dumpsys", "activity", "activities"])
+        found = re.findall(
+            r"ResumedActivity[:=]\s*ActivityRecord\{\S+ \S+ (\S+)/(\S+)", dump
+        )
+        for package, activity in found:
+            if "launcher" not in f"{package}/{activity}".lower():
+                return package
+        return found[0][0] if found else ""
+
     @staticmethod
-    def _ask_device(devices):
-        return devices[ask_from_list("Multiple devices connected:", devices) - 1]
+    def _probe(device_id, cmd):
+        try:
+            result = subprocess.run(
+                [ADB, "-s", device_id, "shell"] + cmd,
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+        except (subprocess.SubprocessError, OSError):
+            return ""
+        return result.stdout
 
     def _use_device(self, device_id, note):
         self.device_id = device_id
